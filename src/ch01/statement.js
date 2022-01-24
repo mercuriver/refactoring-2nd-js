@@ -10,10 +10,10 @@ const statement = (invoice, plays) => {
 
   const playFor = (aPerformance) => plays[aPerformance.playID];
 
-  const amountFor = (aPerformance, play) => {
+  const amountFor = (aPerformance) => {
     let result = 0;
 
-    switch (play.type) {
+    switch (playFor(aPerformance).type) {
       case "tragedy": // 비극
         result = 40000;
         if (aPerformance.audience > 30) {
@@ -28,13 +28,13 @@ const statement = (invoice, plays) => {
         result += 300 * aPerformance.audience;
         break;
       default:
-        throw new Error(`알 수 없는 장르: ${play.type}`);
+        throw new Error(`알 수 없는 장르: ${playFor(aPerformance).type}`);
     }
     return result;
   };
 
   for (let perf of invoice.performances) {
-    const thisAmount = amountFor(perf, playFor(perf));
+    const thisAmount = amountFor(perf);
 
     // 포인트를 적립한다.
     volumeCredits += Math.max(perf.audience - 30, 0);
