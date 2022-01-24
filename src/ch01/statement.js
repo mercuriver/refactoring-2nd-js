@@ -8,6 +8,8 @@ const statement = (invoice, plays) => {
     minimumFractionDigits: 2,
   }).format;
 
+  const playFor = (aPerformance) => plays[aPerformance.playID];
+
   const amountFor = (aPerformance, play) => {
     let result = 0;
 
@@ -32,7 +34,7 @@ const statement = (invoice, plays) => {
   };
 
   for (let perf of invoice.performances) {
-    const play = plays[perf.playID];
+    const play = playFor(perf);
     const thisAmount = amountFor(perf, play);
 
     // 포인트를 적립한다.
