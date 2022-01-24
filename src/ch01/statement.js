@@ -37,11 +37,11 @@ const statement = (invoice, plays) => {
       minimumFractionDigits: 2,
     }).format(aNumber / 100);
   const totalVolumeCredits = () => {
-    let volumeCredits = 0;
+    let result = 0;
     for (let perf of invoice.performances) {
-      volumeCredits += volumeCreditsFor(perf);
+      result += volumeCreditsFor(perf);
     }
-    return volumeCredits;
+    return result;
   };
 
   let totalAmount = 0;
@@ -54,10 +54,8 @@ const statement = (invoice, plays) => {
     totalAmount += amountFor(perf);
   }
 
-  let volumeCredits = totalVolumeCredits();
-
   result += `총액: ${usd(totalAmount)}\n`;
-  result += `적립 포인트: ${volumeCredits} 점\n`;
+  result += `적립 포인트: ${totalVolumeCredits()} 점\n`;
   return result;
 };
 
