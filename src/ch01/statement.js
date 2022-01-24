@@ -8,8 +8,7 @@ const statement = (invoice, plays) => {
     minimumFractionDigits: 2,
   }).format;
 
-  for (let perf of invoice.performances) {
-    const play = plays[perf.playID];
+  const amountFor = (perf, play) => {
     let thisAmount = 0;
 
     switch (play.type) {
@@ -29,6 +28,12 @@ const statement = (invoice, plays) => {
       default:
         throw new Error(`알 수 없는 장르: ${play.type}`);
     }
+    return thisAmount;
+  };
+
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    const thisAmount = amountFor(perf, play);
 
     // 포인트를 적립한다.
     volumeCredits += Math.max(perf.audience - 30, 0);
