@@ -1,13 +1,9 @@
 const statement = (invoice, plays) => {
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `청구 내역 (고객명: ${invoice.customer})\n`;
   const format = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     minimumFractionDigits: 2,
   }).format;
-
   const playFor = (aPerformance) => plays[aPerformance.playID];
   const amountFor = (aPerformance) => {
     let result = 0;
@@ -31,14 +27,23 @@ const statement = (invoice, plays) => {
     }
     return result;
   };
-
-  for (let perf of invoice.performances) {
+  const volumeCreditsFor = (perf) => {
+    let volumeCredits = 0;
     // 포인트를 적립한다.
     volumeCredits += Math.max(perf.audience - 30, 0);
     // 희극 관객 5명마다 추가 포인트를 제공한다.
-    if ("comedy" === playFor(perf).type)
+    if ("comedy" === playFor(perf).type) {
       volumeCredits += Math.floor(perf.audience / 5);
+    }
 
+    return volumeCredits;
+  };
+
+  let totalAmount = 0;
+  let volumeCredits = 0;
+  let result = `청구 내역 (고객명: ${invoice.customer})\n`;
+  for (let perf of invoice.performances) {
+    volumeCredits += volumeCreditsFor(perf);
     // 청구 내역을 출력한다.
     result += `  ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${
       perf.audience
