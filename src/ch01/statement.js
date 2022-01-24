@@ -1,9 +1,4 @@
 const statement = (invoice, plays) => {
-  const format = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-  }).format;
   const playFor = (aPerformance) => plays[aPerformance.playID];
   const amountFor = (aPerformance) => {
     let result = 0;
@@ -35,6 +30,12 @@ const statement = (invoice, plays) => {
     }
     return result;
   };
+  const format = (aNumber) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+    }).format(aNumber);
 
   let totalAmount = 0;
   let volumeCredits = 0;
