@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/mercuriver/refactoring-2nd-js/issues"
   },
-  "homepage": "https://github.com/mercuriver/refactoring-2nd-js#readme"
+  "homepage": "https://github.com/mercuriver/refactoring-2nd-js#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
