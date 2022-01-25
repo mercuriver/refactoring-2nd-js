@@ -12,13 +12,6 @@ const renderPlainText = (data) => {
     }
     return result;
   };
-  const totalAmount = () => {
-    let result = 0;
-    for (let perf of data.performances) {
-      result += data.amount;
-    }
-    return result;
-  };
 
   let result = `청구 내역 (고객명: ${data.customer})\n`;
 
@@ -26,7 +19,7 @@ const renderPlainText = (data) => {
     result += `  ${perf.play.name}: ${usd(data.amount)} (${perf.audience}석)\n`;
   }
 
-  result += `총액: ${usd(totalAmount())}\n`;
+  result += `총액: ${usd(data.totalAmount)}\n`;
   result += `적립 포인트: ${totalVolumeCredits()} 점\n`;
   return result;
 };
@@ -62,6 +55,14 @@ const statement = (invoice, plays) => {
     }
     return result;
   };
+  const totalAmount = (performances) => {
+    let result = 0;
+    for (let perf of performances) {
+      result += perf.amount;
+    }
+    return result;
+  };
+
   const enrichPerformance = (aPerformance) => {
     const result = { ...aPerformance };
     result.play = playFor(result);
@@ -70,9 +71,12 @@ const statement = (invoice, plays) => {
     return result;
   };
 
+  const enrichPerformances = invoice.performances.map(enrichPerformance);
+
   const statementData = {
     customer: invoice.customer,
-    performances: invoice.performances.map(enrichPerformance),
+    performances: enrichPerformances,
+    totalAmount: totalAmount(enrichPerformances),
   };
   return renderPlainText(statementData);
 };
