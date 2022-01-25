@@ -1,4 +1,4 @@
-const renderPlainText = (data, invoice, plays) => {
+const renderPlainText = (data, plays) => {
   const playFor = (aPerformance) => plays[aPerformance.playID];
   const amountFor = (aPerformance) => {
     let result = 0;
@@ -38,14 +38,14 @@ const renderPlainText = (data, invoice, plays) => {
     }).format(aNumber / 100);
   const totalVolumeCredits = () => {
     let result = 0;
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
       result += volumeCreditsFor(perf);
     }
     return result;
   };
   const totalAmount = () => {
     let result = 0;
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
       result += amountFor(perf);
     }
     return result;
@@ -53,7 +53,7 @@ const renderPlainText = (data, invoice, plays) => {
 
   let result = `청구 내역 (고객명: ${data.customer})\n`;
 
-  for (let perf of invoice.performances) {
+  for (let perf of data.performances) {
     result += `  ${playFor(perf).name}: ${usd(amountFor(perf))} (${
       perf.audience
     }석)\n`;
@@ -67,8 +67,9 @@ const renderPlainText = (data, invoice, plays) => {
 const statement = (invoice, plays) => {
   const statementData = {
     customer: invoice.customer,
+    performances: invoice.performances,
   };
-  return renderPlainText(statementData, invoice, plays);
+  return renderPlainText(statementData, plays);
 };
 
 export default statement;
