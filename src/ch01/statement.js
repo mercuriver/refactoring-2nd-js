@@ -55,13 +55,8 @@ const statement = (invoice, plays) => {
     }
     return result;
   };
-  const totalAmount = (performances) => {
-    let result = 0;
-    for (let perf of performances) {
-      result += perf.amount;
-    }
-    return result;
-  };
+  const totalAmount = (performances) =>
+    performances.reduce((result, perf) => result + perf.amount, 0);
 
   const enrichPerformance = (aPerformance) => {
     const result = { ...aPerformance };
