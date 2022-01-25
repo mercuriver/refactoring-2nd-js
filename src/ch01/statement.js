@@ -23,8 +23,8 @@ const renderHtml = (data) => {
   <table>
     <tr>
       <th>연극</th>
-      <th>좌석수/th>
-      <th>금액/th>
+      <th>좌석수</th>
+      <th>금액</th>
     </tr>
   `;
   for (let perf of data.performances) {
