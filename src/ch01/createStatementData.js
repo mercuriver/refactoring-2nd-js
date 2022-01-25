@@ -36,6 +36,9 @@ class PerformanceCalculator {
   }
 }
 
+const createPerformanceCalculator = (aPerformance, aPlay) =>
+  new PerformanceCalculator(aPerformance, aPlay);
+
 const createStatementData = (invoice, plays) => {
   const playFor = (aPerformance) => plays[aPerformance.playID];
   const totalAmount = (performances) =>
@@ -43,7 +46,7 @@ const createStatementData = (invoice, plays) => {
   const totalVolumeCredits = (performances) =>
     performances.reduce((result, perf) => result + perf.volumeCredits, 0);
   const enrichPerformance = (aPerformance) => {
-    const calculator = new PerformanceCalculator(
+    const calculator = createPerformanceCalculator(
       aPerformance,
       playFor(aPerformance)
     );
