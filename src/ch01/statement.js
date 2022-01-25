@@ -1,4 +1,4 @@
-const statement = (invoice, plays) => {
+const renderPlainText = (data, invoice, plays) => {
   const playFor = (aPerformance) => plays[aPerformance.playID];
   const amountFor = (aPerformance) => {
     let result = 0;
@@ -51,7 +51,7 @@ const statement = (invoice, plays) => {
     return result;
   };
 
-  let result = `청구 내역 (고객명: ${invoice.customer})\n`;
+  let result = `청구 내역 (고객명: ${data.customer})\n`;
 
   for (let perf of invoice.performances) {
     result += `  ${playFor(perf).name}: ${usd(amountFor(perf))} (${
@@ -62,6 +62,13 @@ const statement = (invoice, plays) => {
   result += `총액: ${usd(totalAmount())}\n`;
   result += `적립 포인트: ${totalVolumeCredits()} 점\n`;
   return result;
+};
+
+const statement = (invoice, plays) => {
+  const statementData = {
+    customer: invoice.customer,
+  };
+  return renderPlainText(statementData, invoice, plays);
 };
 
 export default statement;
