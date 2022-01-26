@@ -28,13 +28,11 @@ const someCustomers = [
     address: { state: "ST_G" },
   },
 ];
-const xxNewInNewEngland = (stateCode) =>
+const inNewEngland = (stateCode) =>
   ["ST_A", "ST_B", "ST_C", "ST_D", "ST_E", "ST_F"].includes(stateCode);
 
-const inNewEngland = (aCustomer) => xxNewInNewEngland(aCustomer.address.state);
-
 const newEnglanders = someCustomers.filter((c) =>
-  xxNewInNewEngland(c.address.state)
+  inNewEngland(c.address.state)
 );
 
 console.log(newEnglanders);
