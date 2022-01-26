@@ -1,3 +1,5 @@
+import Producer from "./producer.js";
+
 export default class Province {
   constructor(doc) {
     this._name = doc.name;
