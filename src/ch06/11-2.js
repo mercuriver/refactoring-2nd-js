@@ -9,15 +9,14 @@ class Order {
   }
 }
 
-const main = () => {
+const run = (args) => {
   try {
-    const argv = process.argv;
-    if (argv.length < 3) throw new Error("파일명을 입력하세요");
-    const filename = argv[argv.length - 1];
+    if (args.length === 0) throw new Error("파일명을 입력하세요");
+    const filename = args[args.length - 1];
     const input = readJSON(filename);
     const orders = input.map((item) => new Order(item));
 
-    if (argv.includes("-r")) {
+    if (args.includes("-r")) {
       const readyOrders = orders.filter((o) => o.product.status === "ready");
       console.log("ready", readyOrders.length);
     } else {
@@ -27,4 +26,13 @@ const main = () => {
     console.error(err);
   }
 };
-main();
+
+const main = (args) => {
+  try {
+    return run(args);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+main(process.argv.slice(2));
