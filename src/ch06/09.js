@@ -26,29 +26,32 @@ class Reading {
   get year() {
     return this._year;
   }
+  get baseCharge() {
+    return baseRate(this.month, this.year) * this.quantity;
+  }
 }
 
 const client1 = () => {
-  const aReading = acquireReading();
-  const baseCharge =
-    baseRate(aReading.month, aReading.year) * aReading.quantity;
-  return baseCharge;
+  const rawReading = acquireReading();
+  return new Reading(rawReading).baseCharge;
 };
 
 const client2 = () => {
+  const rawReading = acquireReading();
+  const aReading = new Reading(rawReading);
   const taxThreshold = (year) => (year - 2000) * 0.1;
-  const aReading = acquireReading();
-  const base = baseRate(aReading.month, aReading.year) * aReading.quantity;
-  const taxableCharge = Math.max(0, base - taxThreshold(aReading.year));
+  const taxableCharge = Math.max(
+    0,
+    aReading.baseCharge - taxThreshold(aReading.year)
+  );
+
   return taxableCharge;
 };
 
 const client3 = () => {
   const rawReading = acquireReading();
   const aReading = new Reading(rawReading);
-  const calculateBaseCharge = (aReading) =>
-    baseRate(aReading.month, aReading.year) * aReading.quantity;
-  const basicChargeAmount = calculateBaseCharge(aReading);
+  const basicChargeAmount = aReading.baseCharge;
   return basicChargeAmount;
 };
 
