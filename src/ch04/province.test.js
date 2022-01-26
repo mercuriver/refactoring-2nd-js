@@ -25,6 +25,23 @@ describe("province", () => {
   it("change production", () => {
     asia.producers[0].production = 20;
     expect(asia.shortfall).equal(-6);
-    expect(asia.profit).equal(292);
+    // 하나의 it 구문 내에는 하나의 속성 검증만을 하는 것이 바람직 하다.
+    // expect(asia.profit).equal(292);
+  });
+
+});
+
+describe("no producers", () => {
+  let noProducers;
+  beforeEach(() => {
+    const data = { name: "no producers", producers: [], demand: 30, price: 20 };
+    noProducers = new Province(data);
+  });
+
+  it("shortfall", () => {
+    expect(noProducers.shortfall).equal(30);
+  });
+  it("profit", () => {
+    expect(noProducers.profit).equal(0);
   });
 });
