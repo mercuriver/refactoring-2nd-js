@@ -6,6 +6,28 @@ const acquireReading = () => ({
 });
 const baseRate = (month, year) => year - 2000 + month;
 
+class Reading {
+  constructor(data) {
+    this._customer = data.customer;
+    this._quantity = data.quantity;
+    this._month = data.month;
+    this._year = data.year;
+  }
+
+  get customer() {
+    return this._customer;
+  }
+  get quantity() {
+    return this._quantity;
+  }
+  get month() {
+    return this._month;
+  }
+  get year() {
+    return this._year;
+  }
+}
+
 const client1 = () => {
   const aReading = acquireReading();
   const baseCharge =
@@ -22,7 +44,8 @@ const client2 = () => {
 };
 
 const client3 = () => {
-  const aReading = acquireReading();
+  const rawReading = acquireReading();
+  const aReading = new Reading(rawReading);
   const calculateBaseCharge = (aReading) =>
     baseRate(aReading.month, aReading.year) * aReading.quantity;
   const basicChargeAmount = calculateBaseCharge(aReading);
