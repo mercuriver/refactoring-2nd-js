@@ -23,14 +23,19 @@ const someCustomers = [
     name: "F",
     address: { state: "ST_F" },
   },
+  {
+    name: "G",
+    address: { state: "ST_G" },
+  },
 ];
+const xxNewInNewEngland = (stateCode) =>
+  ["ST_A", "ST_B", "ST_C", "ST_D", "ST_E", "ST_F"].includes(stateCode);
 
 const inNewEngland = (aCustomer) => {
-  return ["ST_A", "ST_B", "ST_C", "ST_D", "ST_E", "ST_F"].includes(
-    aCustomer.address.state
-  );
+  const stateCode = aCustomer.address.state;
+  return xxNewInNewEngland(stateCode);
 };
 
-const newEnglanders = someCustomers.filter((c) => inNewEngland(c));
+const newEnglanders = someCustomers.filter(inNewEngland);
 
 console.log(newEnglanders);
