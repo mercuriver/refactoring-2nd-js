@@ -7,20 +7,14 @@ const shippingMethod = {
   discountThreshold: 0.12,
 };
 
-function applyShipping(
-  pricateData,
-  basePrice,
-  shippingMethod,
-  quantity,
-  discount
-) {
+function applyShipping(pricateData, shippingMethod) {
   const shippingPerCase =
-    basePrice > shippingMethod.discountThreshold
+    pricateData.basePrice > shippingMethod.discountThreshold
       ? shippingMethod.discountFee
       : shippingMethod.feePerCase;
 
-  const shippingCost = quantity * shippingPerCase;
-  return basePrice - discount + shippingCost;
+  const shippingCost = pricateData.quantity * shippingPerCase;
+  return pricateData.basePrice - pricateData.discount + shippingCost;
 }
 
 const priceOrder = (product, quantity, shippingMethod) => {
@@ -29,15 +23,13 @@ const priceOrder = (product, quantity, shippingMethod) => {
     Math.max(quantity - product.discountThreshold, 0) *
     product.basePrice *
     product.discountRate;
-  const pricateData = {};
-
-  return applyShipping(
-    pricateData,
+  const pricateData = {
     basePrice,
-    shippingMethod,
     quantity,
-    discount
-  );
+    discount,
+  };
+
+  return applyShipping(pricateData, shippingMethod);
 };
 
 products.forEach((product) => {
