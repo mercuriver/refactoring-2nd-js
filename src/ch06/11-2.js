@@ -12,9 +12,14 @@ class Order {
 class CommandLine {
   constructor(args) {
     if (args.length === 0) throw new Error("파일명을 입력하세요");
+    this._args = args;
+  }
 
-    this.filename = args[args.length - 1];
-    this.onlyCountReady = args.includes("-r");
+  get filename() {
+    return this._args[this._args.length - 1];
+  }
+  get onlyCountReady() {
+    return this._args.includes("-r");
   }
 }
 
