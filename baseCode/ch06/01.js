@@ -20,11 +20,3 @@ const printOwing = (invoice) => {
   console.log(`채무액: ${outstanding}`);
   console.log(`마감일: ${invoice.dueDate?.toLocaleString()}`);
 };
-
-printOwing({
-  customer: "마틴",
-  orders: [
-    { name: "사채", amount: 100 },
-    { name: "대출", amount: 1000 },
-  ],
-});
