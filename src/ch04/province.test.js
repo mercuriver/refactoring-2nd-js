@@ -22,11 +22,12 @@ describe("province", () => {
     expect(asia.profit).equal(230);
   });
 
+  // 하나의 it 구문 내에는 하나의 속성 검증만을 하는 것이 바람직 하다.
+  // 도중에 에러가 발생할 경우
   it("change production", () => {
     asia.producers[0].production = 20;
     expect(asia.shortfall).equal(-6);
-    // 하나의 it 구문 내에는 하나의 속성 검증만을 하는 것이 바람직 하다.
-    // expect(asia.profit).equal(292);
+    expect(asia.profit).equal(292);
   });
 
   it("zero demand", function () {
@@ -45,6 +46,19 @@ describe("province", () => {
     asia.demand = "";
     expect(asia.shortfall).NaN;
     expect(asia.profit).NaN;
+  });
+});
+
+describe("string for producers", () => {
+  it("", () => {
+    const data = {
+      name: "String producers",
+      producers: "",
+      demand: 30,
+      price: 20,
+    };
+    const prov = new Province(data);
+    expect(prov.shortfall).equal(0);
   });
 });
 
