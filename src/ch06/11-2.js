@@ -11,6 +11,8 @@ class Order {
 
 class CommandLine {
   constructor(args) {
+    if (args.length === 0) throw new Error("파일명을 입력하세요");
+
     this.filename = args[args.length - 1];
     this.onlyCountReady = args.includes("-r");
   }
@@ -28,23 +30,9 @@ const countOrders = (commandLine) => {
     : { flag: "not ready", length: orders.length };
 };
 
-const parseCommandLine = (args) => {
-  if (args.length === 0) throw new Error("파일명을 입력하세요");
-  return new CommandLine(args);
-};
-
-const run = (args) => {
-  try {
-    if (args.length === 0) throw new Error("파일명을 입력하세요");
-    return countOrders(parseCommandLine(args));
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 const main = (args) => {
   try {
-    console.log(run(args));
+    console.log(countOrders(new CommandLine(args)));
   } catch (err) {
     console.error(err);
   }
