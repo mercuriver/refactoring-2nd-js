@@ -20,19 +20,23 @@ const countOrders = (commandLine) => {
   const input = readJSON(commandLine.filename);
   const orders = input.map((item) => new Order(item));
 
-  if (commandLine.onlyCountReady) {
-    const readyOrders = orders.filter((o) => o.product.status === "ready");
-    return { flag: "ready", length: readyOrders.length };
-  } else {
-    return { flag: "not ready", length: orders.length };
-  }
+  return commandLine.onlyCountReady
+    ? {
+        flag: "ready",
+        length: orders.filter((o) => o.product.status === "ready").length,
+      }
+    : { flag: "not ready", length: orders.length };
+};
+
+const parseCommandLine = (args) => {
+  if (args.length === 0) throw new Error("파일명을 입력하세요");
+  return new CommandLine(args);
 };
 
 const run = (args) => {
   try {
     if (args.length === 0) throw new Error("파일명을 입력하세요");
-    const commandLine = new CommandLine(args);
-    return countOrders(commandLine);
+    return countOrders(parseCommandLine(args));
   } catch (err) {
     console.error(err);
   }
