@@ -9,19 +9,23 @@ class Order {
   }
 }
 
+const countOrders = (args, filename) => {
+  const input = readJSON(filename);
+  const orders = input.map((item) => new Order(item));
+
+  if (args.includes("-r")) {
+    const readyOrders = orders.filter((o) => o.product.status === "ready");
+    return { flag: "ready", length: readyOrders.length };
+  } else {
+    return { flag: "not ready", length: orders.length };
+  }
+};
+
 const run = (args) => {
   try {
     if (args.length === 0) throw new Error("파일명을 입력하세요");
     const filename = args[args.length - 1];
-    const input = readJSON(filename);
-    const orders = input.map((item) => new Order(item));
-
-    if (args.includes("-r")) {
-      const readyOrders = orders.filter((o) => o.product.status === "ready");
-      console.log("ready", readyOrders.length);
-    } else {
-      console.log("not ready", orders.length);
-    }
+    return countOrders(args, filename);
   } catch (err) {
     console.error(err);
   }
@@ -29,7 +33,7 @@ const run = (args) => {
 
 const main = (args) => {
   try {
-    return run(args);
+    console.log(run(args));
   } catch (err) {
     console.error(err);
   }
