@@ -1,10 +1,19 @@
+import cloneDeep from "lodash/cloneDeep.js";
+
 const acquireReading = () => ({
   customer: "ivan",
   quantity: 10,
   month: 5,
   year: 2017,
 });
+
 const baseRate = (month, year) => year - 2000 + month;
+
+const enrichReading = (origin) => {
+  const result = cloneDeep(origin);
+  result.baseCharge = baseRate(result.month, result.year) * result.quantity;
+  return result;
+};
 
 const client1 = () => {
   const aReading = acquireReading();
@@ -22,7 +31,9 @@ const client2 = () => {
 };
 
 const client3 = () => {
-  const aReading = acquireReading();
+  const rawReading = acquireReading();
+  const aReading = enrichReading(rawReading);
+
   const calculateBaseCharge = (aReading) =>
     baseRate(aReading.month, aReading.year) * aReading.quantity;
   const basicChargeAmount = calculateBaseCharge(aReading);
