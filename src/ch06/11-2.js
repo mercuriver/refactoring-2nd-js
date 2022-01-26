@@ -9,7 +9,11 @@ class Order {
   }
 }
 
-const countOrders = (args, filename) => {
+class CommandLine {
+  constructor() {}
+}
+
+const countOrders = (commandLine, args, filename) => {
   const input = readJSON(filename);
   const orders = input.map((item) => new Order(item));
 
@@ -24,8 +28,11 @@ const countOrders = (args, filename) => {
 const run = (args) => {
   try {
     if (args.length === 0) throw new Error("파일명을 입력하세요");
+
+    const commandLine = new CommandLine();
+
     const filename = args[args.length - 1];
-    return countOrders(args, filename);
+    return countOrders(commandLine, args, filename);
   } catch (err) {
     console.error(err);
   }
