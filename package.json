@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "chai": "^4.3.5",
+    "lodash": "^4.17.21",
     "mocha": "^9.2.0"
   }
 }
