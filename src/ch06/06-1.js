@@ -1,9 +1,17 @@
-let defaultOwner = { firstName: "마틴", lastName: "파울러" };
+let defaultOwnerData = { firstName: "마틴", lastName: "파울러" };
 
-const spaceship = {
-  owner: defaultOwner,
+const getDefaultOwner = () => defaultOwnerData;
+const sertDefaultOwner = (arg) => {
+  defaultOwnerData = arg;
 };
 
-defaultOwner = { firstName: "로버트", lastName: "마틴" };
+const spaceship = {
+  owner: getDefaultOwner(),
+};
 
-console.log(spaceship);
+sertDefaultOwner({ firstName: "Spike", lastName: "Spiegel" });
+const swordfish = {
+  owner: getDefaultOwner(),
+};
+
+console.log(spaceship, swordfish);
