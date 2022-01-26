@@ -1,15 +1,10 @@
-let defaultOwnerData = { firstName: "마틴", lastName: "파울러" };
-
-const getDefaultOwner = () => defaultOwnerData;
-const sertDefaultOwner = (arg) => {
-  defaultOwnerData = arg;
-};
+import { getDefaultOwner, setDefaultOwner } from "./06-1-defaultOwner.js";
 
 const spaceship = {
   owner: getDefaultOwner(),
 };
 
-sertDefaultOwner({ firstName: "Spike", lastName: "Spiegel" });
+setDefaultOwner({ firstName: "Spike", lastName: "Spiegel" });
 const swordfish = {
   owner: getDefaultOwner(),
 };
