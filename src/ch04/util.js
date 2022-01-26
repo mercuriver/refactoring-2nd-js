@@ -1,4 +1,4 @@
-const sampleProvinceData = () => ({
+export const sampleProvinceData = () => ({
   name: "Asia",
   producers: [
     { name: "Byzzantium", cost: 10, production: 9 },
