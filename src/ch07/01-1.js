@@ -1,20 +1,22 @@
 class Organization {
+  #name;
+  #country;
   constructor(data) {
-    this._name = data.name;
-    this._country = data.country;
+    this.#name = data.name;
+    this.#country = data.country;
   }
   get name() {
-    return this._name;
+    return this.#name;
   }
-  get country() {
-    return this._country;
+  set name(aString) {
+    this.#name = aString;
   }
 
-  set name(aString) {
-    this._name = aString;
+  get country() {
+    return this.#country;
   }
   set country(aCountryCode) {
-    this._country = aCountryCode;
+    this.#country = aCountryCode;
   }
 }
 
