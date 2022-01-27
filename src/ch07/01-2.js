@@ -1,6 +1,6 @@
-import { readJSON } from "../fileController.js";
+import { readJSON } from "../util/fileController.js";
 
-const customerData = readJSON("ch7/01-2.json");
+const customerData = readJSON("src/ch07/01-2.json");
 
 export const writeData = (customerId, year, month, amount) => {
   customerData[customerId].usages[year][month] = amount;
