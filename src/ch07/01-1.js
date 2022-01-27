@@ -1,5 +1,11 @@
-let result = "";
-const organization = { name: "애크미 구스베리", country: "GB" };
+class Organization {
+  constructor(data) {
+    this._data = data;
+  }
+  get name() {
+    return this._data.name;
+  }
+}
 
 result += `<h1>${organization.name}</h1>`;
 
