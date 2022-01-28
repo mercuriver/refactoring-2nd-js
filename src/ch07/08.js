@@ -6,8 +6,8 @@ class Person {
   get name() {
     return this._name;
   }
-  get manager() {
-    return this._department.manager;
+  get department() {
+    return this._department;
   }
 }
 
@@ -21,4 +21,4 @@ class Department {
 }
 
 const person = new Person("AA", new Department("BB"));
-console.log(person.name, person.manager);
+console.log(person.name, person.department.manager);
