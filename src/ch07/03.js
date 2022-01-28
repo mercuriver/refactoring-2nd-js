@@ -1,3 +1,12 @@
+class Priority {
+  #value;
+  constructor(value) {
+    this.#value = value;
+  }
+  toString() {
+    return this.#value;
+  }
+}
 
 class Order {
   constructor(data) {
