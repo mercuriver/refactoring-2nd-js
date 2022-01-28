@@ -2,28 +2,24 @@ import { readJSON } from "../util/fileController.js";
 import cloneDeep from "lodash/cloneDeep.js";
 
 class CustomerData {
+  #data;
   constructor(data) {
-    this._data = data;
+    this.#data = data;
   }
   get rawData() {
-    return cloneDeep(this._data);
+    return cloneDeep(this.#data);
   }
   usage(customerId, year, month) {
-    return this._data[customerId].usages[year][month];
+    return this.#data[customerId].usages[year][month];
   }
   setUsage(customerId, year, month, amount) {
-    this._data[customerId].usages[year][month] = amount;
+    this.#data[customerId].usages[year][month] = amount;
   }
 }
 
 let customerData = new CustomerData(readJSON("src/ch07/01-2.json"));
 
-const getCustomerData = () => customerData;
-export const getRawDataOfCustomers = () => customerData._data;
-const setRawDataOfCustomers = (arg) => {
-  customerData = new CustomerData(arg);
-};
-
+export const getCustomerData = () => customerData;
 export const writeData = (customerId, year, month, amount) => {
   getCustomerData().setUsage(customerId, year, month, amount);
 };
