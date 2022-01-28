@@ -29,11 +29,17 @@ class Shipment {
   set trackingInformation(aTrackingInformation) {
     this._trackingInformation = aTrackingInformation;
   }
+  set shippingCompany(arg) {
+    this._trackingInformation.shippingCompany = arg;
+  }
+  set trackingNumber(arg) {
+    this._trackingInformation.trackingNumber = arg;
+  }
 }
 
 const aShipment = new Shipment();
 const vendor = { name: "A-SHIP", number: "010-1234-5678" };
-aShipment.trackingInformation.shippingCompany = vendor.name;
-aShipment.trackingInformation.trackingNumber = vendor.number;
+aShipment.shippingCompany = vendor.name;
+aShipment.trackingNumber = vendor.number;
 
 console.log(aShipment);
