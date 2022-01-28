@@ -4,6 +4,10 @@ class CustomerData {
   constructor(data) {
     this._data = data;
   }
+
+  setUsage(customerId, year, month, amount) {
+    this._data[customerId].usages[year][month] = amount;
+  }
 }
 
 let customerData = new CustomerData(readJSON("src/ch07/01-2.json"));
@@ -14,12 +18,8 @@ const setRawDataOfCustomers = (arg) => {
   customerData = new CustomerData(arg);
 };
 
-const setUsage = (customerId, year, month, amount) => {
-  getRawDataOfCustomers()[customerId].usages[year][month] = amount;
-};
-
 export const writeData = (customerId, year, month, amount) => {
-  setUsage(customerId, year, month, amount);
+  getCustomerData().setUsage(customerId, year, month, amount);
 };
 
 export const compareUsage = (customerId, laterYear, month) => {
