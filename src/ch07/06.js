@@ -18,7 +18,7 @@ class Shipment {
     this._trackingInformation = new TrackingInformation();
   }
   get trackingInfo() {
-    return `${this._trackingInformation.shippingCompany}: ${this._trackingInformation.trackingNumber}`;
+    return `${this.shippingCompany}: ${this.trackingNumber}`;
   }
   get trackingInformation() {
     return this._trackingInformation;
@@ -26,8 +26,14 @@ class Shipment {
   set trackingInformation(aTrackingInformation) {
     this._trackingInformation = aTrackingInformation;
   }
+  get shippingCompany() {
+    return this._trackingInformation.shippingCompany;
+  }
   set shippingCompany(arg) {
     this._trackingInformation.shippingCompany = arg;
+  }
+  get trackingNumber() {
+    return this._trackingInformation.trackingNumber;
   }
   set trackingNumber(arg) {
     this._trackingInformation.trackingNumber = arg;
