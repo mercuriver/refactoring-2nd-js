@@ -16,8 +16,18 @@ class Person {
   get courses() {
     return this._courses;
   }
-  set courses(aList) {
-    this._courses = aList;
+  addCourse(aCourse) {
+    this._courses.push(aCourse);
+  }
+  removeCourse(
+    aCourse,
+    fnIfAbsent = () => {
+      throw new RangeError();
+    }
+  ) {
+    const index = this._courses.includes(aCourse);
+    if (index === -1) fnIfAbsent();
+    else this._courses.splice(index, 1);
   }
 }
 
@@ -35,16 +45,16 @@ class Course {
     return this._isAdvanced;
   }
 }
-
 const readBasicCourseNames = (filename) =>
   Object.values(filename).map((c) => c.basic);
 
 const aPerson = new Person("파울러");
-const numAdvancedCourses = aPerson.courses.filter((c) => c.isAdvanced).length;
-const basicCourseNames = readBasicCourseNames(COURSES);
 
 for (const name of readBasicCourseNames(COURSES)) {
-  aPerson.courses.push(new Course(name, false));
+  aPerson.addCourse(new Course(name, false));
 }
+
+// const basicCourseNames = readBasicCourseNames(COURSES);
+// aPerson.courses = basicCourseNames.map((name) => new Course(name, false));
 
 console.log(aPerson);
