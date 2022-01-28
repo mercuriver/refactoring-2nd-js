@@ -11,9 +11,6 @@ class TrackingInformation {
   set trackingNumber(arg) {
     this._trackingNumber = arg;
   }
-  get display() {
-    return `${this.shippingCompany}: ${this.trackingNumber}`;
-  }
 }
 
 class Shipment {
@@ -21,7 +18,7 @@ class Shipment {
     this._trackingInformation = new TrackingInformation();
   }
   get trackingInfo() {
-    return this._trackingInformation.display;
+    return `${this._trackingInformation.shippingCompany}: ${this._trackingInformation.trackingNumber}`;
   }
   get trackingInformation() {
     return this._trackingInformation;
@@ -42,4 +39,4 @@ const vendor = { name: "A-SHIP", number: "010-1234-5678" };
 aShipment.shippingCompany = vendor.name;
 aShipment.trackingNumber = vendor.number;
 
-console.log(aShipment);
+console.log(aShipment.trackingInfo);
