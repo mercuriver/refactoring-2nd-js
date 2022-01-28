@@ -1,6 +1,4 @@
 class Person {
-  _name;
-  _department;
   constructor(name) {
     this._name = name;
   }
@@ -13,11 +11,15 @@ class Person {
   set department(arg) {
     this._department = arg;
   }
+  get chargeCode() {
+    return this.department.chargeCode;
+  }
+  get manager() {
+    return this.department.manager;
+  }
 }
 
 class Department {
-  _chargeCode;
-  _manager;
   constructor(chargeCode, manager) {
     this._chargeCode = chargeCode;
     this._manager = manager;
@@ -36,12 +38,8 @@ class Department {
   }
 }
 
-const feDev = new Department("WHATAP", "FE");
-const person = new Person("A");
-person.department = feDev;
+const dev = new Department("Dev", "AA");
+const person = new Person("BB");
+person.department = dev;
 
-console.log(
-  person.department.chargeCode,
-  person.department.manager,
-  person.name
-);
+console.log(person.chargeCode, person.manager, person.name);
