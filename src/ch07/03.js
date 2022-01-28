@@ -1,10 +1,9 @@
 class Priority {
-  #value;
   constructor(value) {
-    this.#value = value;
+    this._value = value;
   }
   toString() {
-    return this.#value;
+    return this._value;
   }
 }
 
@@ -12,7 +11,7 @@ class Order {
   constructor(data) {
     this._priority = data.priority;
   }
-  get priority() {
+  get priorityString() {
     return this._priority;
   }
   set priority(aString) {
@@ -28,7 +27,7 @@ const orders = [
 ].map((o) => new Order(o));
 
 const highPriorityCount = orders.filter(
-  (o) => o.priority === "high" || o.priority === "rush"
+  (o) => o.priorityString === "high" || o.priorityString === "rush"
 ).length;
 
 console.log(highPriorityCount);
