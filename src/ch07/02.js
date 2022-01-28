@@ -11,10 +11,10 @@ class Person {
     this._name = name;
   }
   get name() {
-    return this._name;
+    return [...this._name];
   }
   get courses() {
-    return this._courses;
+    return [...this._courses];
   }
   addCourse(aCourse) {
     this._courses.push(aCourse);
