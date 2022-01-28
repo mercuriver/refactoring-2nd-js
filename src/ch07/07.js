@@ -5,17 +5,14 @@ class Person {
   get name() {
     return this._name;
   }
-  get department() {
-    return this._department;
-  }
   set department(arg) {
     this._department = arg;
   }
   get chargeCode() {
-    return this.department.chargeCode;
+    return this._department.chargeCode;
   }
   get manager() {
-    return this.department.manager;
+    return this._department.manager;
   }
 }
 
