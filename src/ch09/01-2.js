@@ -1,8 +1,6 @@
 const discount = (inputValue, quantity) => {
-  let result = inputValue;
-  if (inputValue > 50) result = result - 2;
-  if (quantity > 100) result = result - 1;
-  return result;
+  const result = inputValue > 50 ? inputValue - 2 : inputValue;
+  return quantity > 100 ? result - 1 : result;
 };
 
 console.log(discount(40, 90));
