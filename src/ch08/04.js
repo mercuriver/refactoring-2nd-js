@@ -5,9 +5,13 @@ const recentDateCutoff = () => previousDateFromNow(3);
 const renderPhoto = (outStream, aPhoto) => {
   outStream.write(`<img src="${aPhoto.url}" />`);
 };
-const emitPhotoData = (outStream, photo) => {
+
+const zz__emitPhotoData = (outStream, photo) => {
   outStream.write(`<p>제목: ${photo.title}</p>`);
   outStream.write(`<p>날짜: ${photo.date.toDateString()}</p>`);
+};
+const emitPhotoData = (outStream, photo) => {
+  zz__emitPhotoData(outStream, photo);
   outStream.write(`<p>위치: ${photo.location}</p>`);
 };
 const listRecentPhotos = (outStream, photos) => {
