@@ -6,10 +6,6 @@ class ProductionPlan {
     this._adjustments = [];
   }
   get production() {
-    assert(this._production === this.calculatedProduction);
-    return this._production;
-  }
-  get calculatedProduction() {
     return this._adjustments.reduce((acc, p) => acc + p.amount, 0);
   }
   applyAdjustment(anAdjustment) {
