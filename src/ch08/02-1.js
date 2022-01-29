@@ -7,8 +7,12 @@ class Customer {
   get discountRate() {
     return this._discountRate;
   }
+  _setDiscountRate(aNumber) {
+    this._discountRate = aNumber;
+  }
+
   becomePreferred() {
-    this._discountRate += 0.03;
+    this._setDiscountRate(this._discountRate + 0.03);
     // 다른 멋진 일들
   }
   applyDiscount(amount) {
