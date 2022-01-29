@@ -7,16 +7,6 @@ class Customer {
   }
 }
 
-class Order {
-  constructor(data) {
-    this._number = data.number;
-    this._customer = new Customer(data.customer);
-  }
-  get customer() {
-    return this._customer;
-  }
-}
-
 let _repositoryData;
 export const initialize = () => {
   _repositoryData = { customers: new Map() };
@@ -28,6 +18,18 @@ export const registerCustomer = (id) => {
   }
   return findCustomer(id);
 };
+
+class Order {
+  constructor(data) {
+    this._number = data.number;
+    this._customer = registerCustomer(data.customer);
+  }
+  get customer() {
+    return this._customer;
+  }
+}
+
+initialize();
 
 const o = new Order({ number: 999, customer: 123 });
 console.log(o, o.customer.id);
