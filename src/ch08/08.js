@@ -13,10 +13,11 @@ const acquireData = (input) => {
     .slice(1)
     .filter((line) => line.trim() !== "")
     .map((line) => line.split(","))
-    .filter((record) => record[1].trim() === "India");
+    .filter((record) => record[1].trim() === "India")
+    .map((record) => ({ city: record[0].trim(), phone: record[2].trim() }));
 
   for (const record of loopItems) {
-    result.push({ city: record[0].trim(), phone: record[2].trim() });
+    result.push(record);
   }
   return result;
 };
