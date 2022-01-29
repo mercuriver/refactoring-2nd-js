@@ -1,5 +1,3 @@
-import assert from "assert";
-
 class ProductionPlan {
   constructor() {
     this._adjustments = [];
