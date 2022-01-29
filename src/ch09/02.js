@@ -1,13 +1,13 @@
 class Organization {
   constructor(data) {
-    this._name = data.name;
+    this._title = data.title !== undefined ? data.title : data.name;
     this._country = data.country;
   }
   get name() {
-    return this._name;
+    return this._title;
   }
   set name(aString) {
-    this._name = aString;
+    this._title = aString;
   }
   get country() {
     return this._country;
