@@ -16,7 +16,7 @@ export const registerCustomer = (id) => {
   if (!_repositoryData.customers.has(id)) {
     _repositoryData.customers.set(id, new Customer(id));
   }
-  return findCustomer(id);
+  return id;
 };
 
 class Order {
@@ -25,7 +25,7 @@ class Order {
     this._customer = registerCustomer(data.customer);
   }
   get customer() {
-    return this._customer;
+    return findCustomer(this._customer);
   }
 }
 
