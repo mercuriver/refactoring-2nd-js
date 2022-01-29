@@ -6,7 +6,7 @@ const renderPhoto = (outStream, aPhoto) => {
   outStream.write(`<img src="${aPhoto.url}" />`);
 };
 
-const zz__emitPhotoData = (outStream, photo) => {
+const emitPhotoData = (outStream, photo) => {
   outStream.write(`<p>제목: ${photo.title}</p>`);
   outStream.write(`<p>날짜: ${photo.date.toDateString()}</p>`);
 };
@@ -16,15 +16,15 @@ const listRecentPhotos = (outStream, photos) => {
     .filter((p) => p.date > recentDateCutoff())
     .forEach((p) => {
       outStream.write("<div>\n");
-      zz__emitPhotoData(outStream, p);
-      outStream.write(`<p>위치: ${p.location}</p>`);
+      emitPhotoData(outStream, p);
+      outStream.write(`<p>위치 정보: ${p.location}</p>`);
       outStream.write("</div>\n");
     });
 };
 const renderPerson = (outStream, person) => {
   outStream.write(`<p>${person.name}</p>\n`);
   renderPhoto(outStream, person.photo);
-  zz__emitPhotoData(outStream, person.photo);
+  emitPhotoData(outStream, person.photo);
   outStream.write(`<p>위치: ${person.photo.location}</p>`);
 };
 
