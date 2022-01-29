@@ -2,7 +2,7 @@ const renderPhoto = (aPhoto) => {
   return `<img src="${aPhoto.url}" />`;
 };
 
-const zz_emitPhotoData = (aPhoto) => {
+const emitPhotoData = (aPhoto) => {
   const result = [];
   result.push(`<p>제목: ${aPhoto.title}</p>`);
   result.push(`<p>위치: ${aPhoto.location}</p>`);
@@ -14,11 +14,11 @@ const renderPerson = (person) => {
   const result = [];
   result.push(`<p>${person.name}</p>`);
   result.push(renderPhoto(person.photo));
-  result.push(zz_emitPhotoData(person.photo));
+  result.push(emitPhotoData(person.photo));
   return result.join("\n");
 };
 
-const photoDiv = (p) => ["<div>", zz_emitPhotoData(p), "</div>"].join("\n");
+const photoDiv = (p) => ["<div>", emitPhotoData(p), "</div>"].join("\n");
 
 const photo = {
   title: "Photo-AA",
