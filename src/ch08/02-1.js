@@ -12,11 +12,11 @@ class Customer {
   }
 
   becomePreferred() {
-    this._setDiscountRate(this._discountRate + 0.03);
+    this._setDiscountRate(this.discountRate + 0.03);
     // 다른 멋진 일들
   }
   applyDiscount(amount) {
-    return amount.subtract(amount.multiply(this._discountRate));
+    return amount.subtract(amount.multiply(this.discountRate));
   }
 }
 
