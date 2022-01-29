@@ -1,5 +1,4 @@
 const renderPhoto = (aPhoto) => `<img src="${aPhoto.url}" />`;
-
 const emitPhotoData = (aPhoto) =>
   [
     `<p>제목: ${aPhoto.title}</p>`,
@@ -7,13 +6,12 @@ const emitPhotoData = (aPhoto) =>
     `<p>날짜: ${aPhoto.date.toDateString()}</p>`,
   ].join("\n");
 
-const renderPerson = (person) => {
-  const result = [];
-  result.push(`<p>${person.name}</p>`);
-  result.push(renderPhoto(person.photo));
-  result.push(emitPhotoData(person.photo));
-  return result.join("\n");
-};
+const renderPerson = (person) =>
+  [
+    `<p>${person.name}</p>`,
+    renderPhoto(person.photo),
+    emitPhotoData(person.photo),
+  ].join("\n");
 
 const photoDiv = (p) => ["<div>", emitPhotoData(p), "</div>"].join("\n");
 
