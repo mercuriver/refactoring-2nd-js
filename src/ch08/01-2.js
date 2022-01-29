@@ -1,10 +1,10 @@
 class AccountType {
-  constructor(isPremium) {
-    this._isPremium = isPremium;
+  constructor(type) {
+    this._isPremium = type.isPremium;
   }
   // 초과 인출 이자 계산
   overdraftCharge(daysOverdrawn) {
-    if (this.isPremium) {
+    if (this._isPremium) {
       const baseCharge = 10;
       if (daysOverdrawn <= 7) return baseCharge;
       return baseCharge + (daysOverdrawn - 7) * 0.85;
@@ -14,11 +14,9 @@ class AccountType {
 }
 
 class Account {
-  daysOverdrawn;
-  type = { isPremium: false };
   constructor(daysOverdrawn, type) {
     this.daysOverdrawn = daysOverdrawn;
-    this.type = type;
+    this.type = new AccountType(type);
   }
   // 은행 이자 계산
   get bankCharge() {
@@ -27,7 +25,9 @@ class Account {
     return result;
   }
 
-  get overdraftCharge() {}
+  get overdraftCharge() {
+    return this.type.overdraftCharge(this.daysOverdrawn);
+  }
 }
 
 const aa = new Account(10, { isPremium: true });
