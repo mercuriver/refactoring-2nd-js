@@ -1,8 +1,6 @@
-import assert from "assert";
 class ProductionPlan {
   constructor(production) {
     this._adjustments = [];
-    this._production = production;
     this._initialProduction = production;
   }
   get production() {
@@ -11,10 +9,8 @@ class ProductionPlan {
       this._initialProduction
     );
   }
-
   applyAdjustment(anAdjustment) {
     this._adjustments.push(anAdjustment);
-    this._production += anAdjustment.amount;
   }
 }
 
