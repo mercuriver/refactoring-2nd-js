@@ -13,15 +13,10 @@ const chargeOrder = (charge) => console.log(charge);
 const order = retreiveOrder();
 const units = order.units;
 const pricingPlan = retreivePricingPlan();
-let discountableUnits = Math.max(units - pricingPlan.discountThreshold, 0);
 
-let discount;
-discount = discountableUnits * pricingPlan.discountFactor;
-if (order.isRepeat) discount += 20;
+const discountableUnits = Math.max(units - pricingPlan.discountThreshold, 0);
+const discount =
+  discountableUnits * pricingPlan.discountFactor + (order.isRepeat ? 20 : 0);
 
-const chargePerUnit = pricingPlan.unit;
-const baseCharge = pricingPlan.base;
-let charge;
-charge = baseCharge + units * chargePerUnit;
-charge = charge - discount;
+let charge = pricingPlan.base + units * pricingPlan.unit - discount;
 chargeOrder(charge);
