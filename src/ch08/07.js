@@ -7,16 +7,23 @@ const PEOPLE = [
 ];
 
 const getInfos = (people) => {
-  let youngest = people[0] ? people[0].age : Infinity;
-  for (const p of people) {
-    if (p.age < youngest) youngest = p.age;
-  }
+  const youngestAge = () => {
+    let result = people[0] ? people[0].age : Infinity;
+    for (const p of people) {
+      if (p.age < result) result = p.age;
+    }
+    return result;
+  };
 
-  let totalSalary = 0;
-  for (const p of people) {
-    totalSalary += p.salary;
-  }
-  return `최연소: ${youngest}, 총급여: ${totalSalary}`;
+  const totalSalary = () => {
+    let result = 0;
+    for (const p of people) {
+      result += p.salary;
+    }
+    return result;
+  };
+
+  return `최연소: ${youngestAge()}, 총급여: ${totalSalary()}`;
 };
 
 console.log(getInfos(PEOPLE));
