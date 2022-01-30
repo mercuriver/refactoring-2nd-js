@@ -21,14 +21,18 @@ class HeatingPlan {
   }
 }
 
+const xxNewWithinRange = (aPlan, tempRange) => {
+  const low = tempRange.low;
+  const high = tempRange.high;
+  return aPlan.withinRange(low, high);
+};
+
 const client = () => {
   const room = new Room(22, 24);
   const plan = new HeatingPlan(21, 25);
-
   const tempRange = room.daysTempRange;
-  const low = tempRange.low;
-  const high = tempRange.high;
-  const isWithinRange = plan.withinRange(low, high);
+
+  const isWithinRange = xxNewWithinRange(plan, tempRange);
 
   if (!isWithinRange) {
     console.log("방 온도가 지정 범위를 벗어났습니다.");
