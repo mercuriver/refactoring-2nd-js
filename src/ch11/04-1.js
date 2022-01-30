@@ -21,7 +21,10 @@ class HeatingPlan {
     );
   }
   xxNewWithinRange(aNumberRange) {
-    return this.withinRange(aNumberRange.low, aNumberRange.high);
+    return (
+      aNumberRange.low >= this._temperatureRange.low &&
+      aNumberRange.high <= this._temperatureRange.high
+    );
   }
 }
 
