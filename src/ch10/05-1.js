@@ -36,6 +36,13 @@ class UnknownCustomer {
   get isUnknown() {
     return true;
   }
+  get name() {
+    return "거주자";
+  }
+  get billingPlan() {
+    return registry.billingPlans.basic;
+  }
+  set billingPlan(set) {}
 }
 
 const isUnknown = (arg) => {
@@ -48,15 +55,11 @@ const isUnknown = (arg) => {
 const client1 = () => {
   const customer = new Site().customer;
   //... 수많은 코드 ...
-  let customerName;
-  if (isUnknown(customer)) customerName = "거주자";
-  else customerName = customer.name;
+  const customerName = customer.name;
 };
 const client2 = () => {
   const customer = new Site().customer;
-  const plan = isUnknown(customer)
-    ? registry.billingPlans.basic
-    : customer.billingPlan;
+  const plan = customer.billingPlan;
 };
 const client3 = () => {
   const customer = new Site().customer;
