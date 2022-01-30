@@ -47,11 +47,14 @@ class ExperiencedChinaRating extends Rating {
   get captainHistoryRisk() {
     return Math.max(super.captainHistoryRisk - 2, 0);
   }
+  get voyageProfitFactor() {
+    return super.voyageProfitFactor + 3;
+  }
   get historyLengthFactor() {
     return this._history.length > 10 ? 1 : 0;
   }
   get voyageLengthFactor() {
-    let result = 3;
+    let result = 0;
     if (this._voyage.length > 12) result += 1;
     if (this._voyage.length > 18) result -= 1;
     return result;
