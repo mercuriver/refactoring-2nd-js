@@ -48,31 +48,6 @@ class Rating {
   }
 }
 
-// 투자 등급
-const rating = (voyage, history) => {
-  return new Rating(voyage, history).value;
-};
-
-// 항해 경로 위험요소
-const voyageRisk = (voyage) => {
-  return new Rating(voyage).voyageRisk;
-};
-
-// 중국을 경유하는가?
-const hasChina = (history) => {
-  return new Rating(null, history).hasChinaHistory;
-};
-
-// 선장의 항해 이력 위험요소
-const captainHistoryRisk = (voyage, history) => {
-  return new Rating(voyage, history).captainHistoryRisk;
-};
-
-// 수익 요인
-const voyageProfitFactor = (voyage, history) => {
-  return new Rating(voyage, history).voyageProfitFactor;
-};
-
 const voyage = { zone: "서인도", length: 10 };
 const histories = [
   { zone: "동인도", profit: 5 },
@@ -81,10 +56,10 @@ const histories = [
   { zone: "서아프리카", profit: 7 },
 ];
 
-const myRating = rating(voyage, histories);
+const myRating = new Rating(voyage, histories);
 console.log({
-  voyageRisk: voyageRisk(voyage),
-  captainHistoryRisk: captainHistoryRisk(voyage, histories),
-  voyageProfitFactor: voyageProfitFactor(voyage, histories),
-  myRating,
+  voyageRisk: myRating.voyageRisk,
+  captainHistoryRisk: myRating.captainHistoryRisk,
+  voyageProfitFactor: myRating.voyageProfitFactor,
+  myRating: myRating.value,
 });
