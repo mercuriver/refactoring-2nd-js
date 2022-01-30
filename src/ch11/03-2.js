@@ -20,8 +20,7 @@ class Order {
     this.placedOn = new Place();
   }
 }
-
-const deliveryDate = (anOrder, isRush) => {
+function getDeliveryTime(anOrder, isRush) {
   let deliveryTime;
   if (["MA", "CT"].includes(anOrder.deliveryState))
     deliveryTime = isRush ? 1 : 2;
@@ -31,6 +30,12 @@ const deliveryDate = (anOrder, isRush) => {
   } else if (isRush) deliveryTime = 3;
   else if (anOrder.deliveryState === "ME") deliveryTime = 3;
   else deliveryTime = 4;
+  return deliveryTime;
+}
+
+const deliveryDate = (anOrder, isRush) => {
+  const deliveryTime = getDeliveryTime(anOrder, isRush);
+
   let result = anOrder.placedOn.plusDays(2 + deliveryTime);
   if (isRush) result = result.minusDays(1);
   return result;
