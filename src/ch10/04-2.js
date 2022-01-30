@@ -1,10 +1,21 @@
+class Rating {
+  constructor(voyage, history) {
+    this._voyage = voyage;
+    this._history = history;
+  }
+
+  get value() {
+    const vpf = voyageProfitFactor(this._voyage, this._history);
+    const vr = voyageRisk(this._voyage);
+    const chr = captainHistoryRisk(this._voyage, this._history);
+    if (vpf * 3 > vr + chr * 2) return "A";
+    return "B";
+  }
+}
+
 // 투자 등급
 const rating = (voyage, history) => {
-  const vpf = voyageProfitFactor(voyage, history);
-  const vr = voyageRisk(voyage);
-  const chr = captainHistoryRisk(voyage, history);
-  if (vpf * 3 > vr + chr * 2) return "A";
-  return "B";
+  return new Rating(voyage, history).value;
 };
 
 // 항해 경로 위험요소
