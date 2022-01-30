@@ -26,7 +26,9 @@ const client = () => {
   const plan = new HeatingPlan(21, 25);
   const low = room.daysTempRange.low;
   const high = room.daysTempRange.high;
-  if (!plan.withinRange(low, high)) {
+  const isWithinRange = plan.withinRange(low, high);
+
+  if (!isWithinRange) {
     console.log("방 온도가 지정 범위를 벗어났습니다.");
   } else {
     console.log("적정 온도입니다.");
