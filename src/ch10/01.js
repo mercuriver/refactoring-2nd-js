@@ -8,9 +8,12 @@ const plan = {
   regularServiceCharge: 100,
 };
 
+function summer(aDate) {
+  return !aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd);
+}
+
 const getCharge = (quantity, aDate) => {
-  if (!aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd))
-    return quantity * plan.summerRate;
+  if (summer(aDate)) return quantity * plan.summerRate;
   return quantity * plan.regularRate + plan.regularServiceCharge;
 };
 
