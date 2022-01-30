@@ -9,6 +9,9 @@ class Customer {
   get name() {
     return this._name;
   }
+  get isUnknown() {
+    return false;
+  }
   get billingPlan() {
     return this._billingPlan;
   }
@@ -19,6 +22,10 @@ class Customer {
     return this._paymentHistory;
   }
 }
+
+const createUnknownCustomer = () => ({
+  isUnknown: true,
+});
 
 const client1 = () => {
   const customer = new Site().customer;
