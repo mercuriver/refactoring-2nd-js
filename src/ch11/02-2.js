@@ -8,7 +8,10 @@ const usd = (aNumber) =>
 const bottomBand = (usage) => Math.min(usage, 100);
 const middleBand = (usage) => (usage > 100 ? Math.min(usage, 200) - 100 : 0);
 const topBand = (usage) => (usage > 200 ? usage - 200 : 0);
-const baseCharge0 = (usage) => {
+
+const withinBand = (usage, bobttom, top) =>
+  usage > bobttom ? Math.min(usage, top) - bobttom : 0;
+
   if (usage < 0) return usd(0);
   const amount =
     bottomBand(usage) * 0.03 + middleBand(usage) * 0.05 + topBand(usage) * 0.07;
