@@ -35,6 +35,9 @@ class Bird {
 
 const feather = (bird) => new Bird(bird).feather;
 const velocity = (bird) => new Bird(bird).velocity;
+class EupropeanSwallow extends Bird {}
+class AfricalSwallow extends Bird {}
+class NorwegianBlueParrot extends Bird {}
 
 const birds = [
   { name: "유-제", type: "유럽 제비" },
