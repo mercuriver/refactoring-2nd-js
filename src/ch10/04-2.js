@@ -48,6 +48,7 @@ class Rating {
   }
 }
 
+class ExperiencedChinaRating extends Rating {}
 const voyage = { zone: "서인도", length: 10 };
 const histories = [
   { zone: "동인도", profit: 5 },
