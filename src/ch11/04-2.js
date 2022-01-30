@@ -9,7 +9,6 @@ class Room {
     this.daysTempRange = new TemperatureRange(min, max);
   }
 }
-const room = new Room(22, 24);
 
 class HeatingPlan {
   constructor(low, high) {
@@ -23,9 +22,12 @@ class HeatingPlan {
 }
 
 const client = () => {
+  const room = new Room(22, 24);
   const plan = new HeatingPlan(21, 25);
-  const low = room.daysTempRange.low;
-  const high = room.daysTempRange.high;
+
+  const tempRange = room.daysTempRange;
+  const low = tempRange.low;
+  const high = tempRange.high;
   const isWithinRange = plan.withinRange(low, high);
 
   if (!isWithinRange) {
