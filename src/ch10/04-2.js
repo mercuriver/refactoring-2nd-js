@@ -36,9 +36,13 @@ class Rating {
 
   get voyageAndHistoryLengthFactor() {
     let result = 0;
-    if (this._history.length > 8) result += 1;
+    if (this.historyLengthFactor) result += 1;
     if (this._voyage.length > 14) result -= 1;
     return result;
+  }
+
+  get historyLengthFactor() {
+    return this._history.length > 8 ? 1 : 0;
   }
 }
 
@@ -48,10 +52,13 @@ class ExperiencedChinaRating extends Rating {
   }
   get voyageAndHistoryLengthFactor() {
     let result = 3;
-    if (this._history.length > 10) result += 1;
+    if (this.historyLengthFactor) result += 1;
     if (this._voyage.length > 12) result += 1;
     if (this._voyage.length > 18) result -= 1;
     return result;
+  }
+  get historyLengthFactor() {
+    return this._history.length > 10 ? 1 : 0;
   }
 }
 
