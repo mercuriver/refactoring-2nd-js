@@ -33,16 +33,16 @@ class Bird {
   }
 }
 
-class EupropeanSwallow extends Bird {}
-class AfricalSwallow extends Bird {}
+class EuropeanSwallow extends Bird {}
+class AfricanSwallow extends Bird {}
 class NorwegianBlueParrot extends Bird {}
 
 const createBiard = (bird) => {
   switch (bird.type) {
     case "유럽 제비":
-      return new EupropeanSwallow(bird);
+      return new EuropeanSwallow(bird);
     case "아프리카 제비":
-      return new AfricalSwallow(bird);
+      return new AfricanSwallow(bird);
     case "노르웨이 파랑 앵무":
       return new NorwegianBlueParrot(bird);
     default:
