@@ -1,4 +1,4 @@
-import { assert } from "assert";
+import assert from "assert";
 
 class Customer {
   applyDiscount(number) {
@@ -11,3 +11,9 @@ class Customer {
     this._discountRate = number;
   }
 }
+
+const a = new Customer();
+// a.discountRate = -10;
+a.discountRate = 10;
+a.applyDiscount(10);
+console.log(a);
