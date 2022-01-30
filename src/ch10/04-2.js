@@ -39,9 +39,7 @@ class Rating {
     return this._history.length > 8 ? 1 : 0;
   }
   get voyageLengthFactor() {
-    let result = 0;
-    if (this._voyage.length > 14) result -= 1;
-    return result;
+    return this._voyage.length > 14 ? -1 : 0;
   }
 }
 
