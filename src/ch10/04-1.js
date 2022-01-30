@@ -33,11 +33,25 @@ class Bird {
   }
 }
 
-const feather = (bird) => new Bird(bird).feather;
-const velocity = (bird) => new Bird(bird).velocity;
 class EupropeanSwallow extends Bird {}
 class AfricalSwallow extends Bird {}
 class NorwegianBlueParrot extends Bird {}
+
+const createBiard = (bird) => {
+  switch (bird.type) {
+    case "유럽 제비":
+      return new EupropeanSwallow(bird);
+    case "아프리카 제비":
+      return new AfricalSwallow(bird);
+    case "노르웨이 파랑 앵무":
+      return new NorwegianBlueParrot(bird);
+    default:
+      return new Bird(bird);
+  }
+};
+
+const feather = (bird) => createBiard(bird).feather;
+const velocity = (bird) => createBiard(bird).velocity;
 
 const birds = [
   { name: "유-제", type: "유럽 제비" },
