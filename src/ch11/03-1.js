@@ -28,10 +28,7 @@ const regularDeliveryDate = (anOrder) => {
   return anOrder.placedOn.plusDays(2 + deliveryTime);
 };
 
-const deliveryDate = (anOrder, isRush) =>
-  isRush ? rushDeliveryDate(anOrder) : regularDeliveryDate(anOrder);
-
-console.log(deliveryDate(new Order("MA"), true));
-console.log(deliveryDate(new Order("NH"), true));
-console.log(deliveryDate(new Order("CT"), false));
-console.log(deliveryDate(new Order("ME"), false));
+console.log(rushDeliveryDate(new Order("MA")));
+console.log(rushDeliveryDate(new Order("NH")));
+console.log(regularDeliveryDate(new Order("CT")));
+console.log(regularDeliveryDate(new Order("ME")));
