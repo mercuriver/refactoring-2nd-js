@@ -49,6 +49,14 @@ class Rating {
 }
 
 class ExperiencedChinaRating extends Rating {}
+
+const createRating = (voyage, histories) => {
+  if (voyage.zone === "중국" && histories.some((v) => v.zone === "중국")) {
+    return new ExperiencedChinaRating(voyage, histories);
+  }
+  return new Rating(voyage, histories);
+};
+
 const voyage = { zone: "서인도", length: 10 };
 const histories = [
   { zone: "동인도", profit: 5 },
@@ -57,10 +65,18 @@ const histories = [
   { zone: "서아프리카", profit: 7 },
 ];
 
-const myRating = new Rating(voyage, histories);
+const myRating = createRating(voyage, histories);
 console.log({
   voyageRisk: myRating.voyageRisk,
   captainHistoryRisk: myRating.captainHistoryRisk,
   voyageProfitFactor: myRating.voyageProfitFactor,
   myRating: myRating.value,
+});
+
+const chinaRating = createRating({ zone: "중국", length: 10 }, histories);
+console.log({
+  voyageRisk: chinaRating.voyageRisk,
+  captainHistoryRisk: chinaRating.captainHistoryRisk,
+  voyageProfitFactor: chinaRating.voyageProfitFactor,
+  myRating: chinaRating.value,
 });
