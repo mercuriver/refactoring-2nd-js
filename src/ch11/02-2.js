@@ -18,3 +18,11 @@ const baseCharge = (usage) => {
     withinBand(usage, 200, Infinity) * 0.07;
   return usd(amount);
 };
+
+console.log(
+  baseCharge(-1000),
+  baseCharge(0),
+  baseCharge(50),
+  baseCharge(1000),
+  baseCharge(15000)
+);
