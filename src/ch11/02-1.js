@@ -5,6 +5,6 @@ const fivePercentRaise = (person) => {
   person.salary = person.salary.multiply(1.05);
 };
 
-const raise = (person, factor) => {
+const raise = (factor) => (person) => {
   person.salary = person.salary.multiply(1 + factor);
 };
