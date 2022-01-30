@@ -10,14 +10,14 @@ const plan = {
 
 const summer = (aDate) =>
   !aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd);
+
 const regularCharge = (quantity) =>
   quantity * plan.regularRate + plan.regularServiceCharge;
+
 const summerCharge = (quantity) => quantity * plan.summerRate;
 
-const getCharge = (quantity, aDate) => {
-  if (summer(aDate)) return summerCharge(quantity);
-  return regularCharge(quantity);
-};
+const getCharge = (quantity, aDate) =>
+  summer(aDate) ? summerCharge(quantity) : regularCharge(quantity);
 
 console.log(getCharge(10, dayjs("2021-06-29")));
 console.log(getCharge(10, dayjs("2021-08-15")));
