@@ -36,7 +36,10 @@ const deliveryDate = (anOrder, isRush) => {
   return result;
 };
 
-console.log(deliveryDate(new Order("MA"), true).date);
-console.log(deliveryDate(new Order("NH"), true).date);
-console.log(deliveryDate(new Order("CT"), false).date);
-console.log(deliveryDate(new Order("ME"), false).date);
+const rushDeliveryDate = (anOrder) => deliveryDate(anOrder, true);
+const regularDeliveryDate = (anOrder) => deliveryDate(anOrder, false);
+
+console.log(rushDeliveryDate(new Order("MA")));
+console.log(rushDeliveryDate(new Order("NH")));
+console.log(regularDeliveryDate(new Order("CT")));
+console.log(regularDeliveryDate(new Order("ME")));
