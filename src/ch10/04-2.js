@@ -5,9 +5,9 @@ class Rating {
   }
 
   get value() {
-    const vpf = voyageProfitFactor(this._voyage, this._history);
-    const vr = voyageRisk(this._voyage);
-    const chr = captainHistoryRisk(this._voyage, this._history);
+    const vpf = this.voyageProfitFactor;
+    const vr = this.voyageRisk;
+    const chr = this.captainHistoryRisk;
     if (vpf * 3 > vr + chr * 2) return "A";
     return "B";
   }
