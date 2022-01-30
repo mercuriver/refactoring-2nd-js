@@ -1,17 +1,10 @@
-const sendAlert = (p) => console.warn("악당 발견", p);
+const sendAlert = (p) => console.warn("악당 발견 =>", p);
 
 const checkForMiscreants = (people) => {
-  let found = false;
   for (const p of people) {
-    if (!found) {
-      if (p === "조커") {
-        sendAlert(p);
-        return;
-      }
-      if (p === "사루만") {
-        sendAlert(p);
-        return;
-      }
+    if (p === "조커" || p === "사루만") {
+      sendAlert(p);
+      return;
     }
   }
 };
