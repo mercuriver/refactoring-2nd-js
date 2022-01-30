@@ -32,8 +32,18 @@ const isUnknown = (customer) =>
 
 const enrichSite = (site) => {
   const res = cloneDeep(site);
-  // const unknownComstomer = { isUnknown: true};
-  res._customer.isUnknown = isUnknown(res._customer) ? true : false;
+  const unknownComstomer = {
+    isUnknown: true,
+    name: "거주자",
+    billingPlan: registry.billingPlans.basic,
+    paymentHistory: { weeksDelinquentInLastYear: 0 },
+  };
+
+  if (isUnknown(res._customer)) {
+    res._customer = unknownComstomer;
+  } else {
+    res._customer.isUnknown = false;
+  }
 
   return res;
 };
@@ -41,20 +51,16 @@ const enrichSite = (site) => {
 const client1 = () => {
   const rawSite = acquireSiteData();
   const site = enrichSite(rawSite);
-  const customer = site.customer;
-  let customerName;
-  if (isUnknown(customer)) customerName = "거주자";
-  else customerName = customer.name;
+  const customerName = site.customer.name;
 };
 const client2 = () => {
-  const customer = acquireSiteData().customer;
-  const plan = isUnknown(customer)
-    ? registry.billingPlans.basic
-    : customer.billingPlan;
+  const rawSite = acquireSiteData();
+  const site = enrichSite(rawSite);
+  const plan = site.customer.billingPlan;
 };
 const client3 = () => {
-  const customer = acquireSiteData().customer;
-  const weeksDelinquent = isUnknown(customer)
-    ? 0
-    : customer.paymentHsitry.weeksDelinquentInLastYear;
+  const rawSite = acquireSiteData();
+  const site = enrichSite(rawSite);
+  const weeksDelinquent =
+    site.customer.paymentHistory.weeksDelinquentInLastYear;
 };
