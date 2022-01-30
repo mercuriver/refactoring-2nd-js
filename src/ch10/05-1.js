@@ -9,6 +9,12 @@ class Site {
 }
 
 class Customer {
+  constructor() {
+    this._paymentHistory = "paymentHistoryValue";
+    this._name = "nameValue";
+    this._customer = "customerValue";
+    this._billingPlan = "billingPlanValue";
+  }
   get name() {
     return this._name;
   }
