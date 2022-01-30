@@ -32,16 +32,16 @@ class Rating {
     if (this._voyage.zone === "동인도") result += 1;
 
     result += this.historyLengthFactor;
-    result += this.voyageAndHistoryLengthFactor;
-    return result;
-  }
-  get voyageAndHistoryLengthFactor() {
-    let result = 0;
-    if (this._voyage.length > 14) result -= 1;
+    result += this.voyageLengthFactor;
     return result;
   }
   get historyLengthFactor() {
     return this._history.length > 8 ? 1 : 0;
+  }
+  get voyageLengthFactor() {
+    let result = 0;
+    if (this._voyage.length > 14) result -= 1;
+    return result;
   }
 }
 
@@ -49,14 +49,14 @@ class ExperiencedChinaRating extends Rating {
   get captainHistoryRisk() {
     return Math.max(super.captainHistoryRisk - 2, 0);
   }
-  get voyageAndHistoryLengthFactor() {
+  get historyLengthFactor() {
+    return this._history.length > 10 ? 1 : 0;
+  }
+  get voyageLengthFactor() {
     let result = 3;
     if (this._voyage.length > 12) result += 1;
     if (this._voyage.length > 18) result -= 1;
     return result;
-  }
-  get historyLengthFactor() {
-    return this._history.length > 10 ? 1 : 0;
   }
 }
 
