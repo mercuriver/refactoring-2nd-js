@@ -6,17 +6,13 @@ const calculateAscent = () => {
   }
   return result;
 };
-const calculateTime = () => {};
-const calculateDistance = () => {};
+const calculateTime = () => 1;
+const calculateDistance = () => 1;
 
-let points = [{ elevation: 1 }, { elevation: 4 }, { elevation: 9 }];
-let totalAscent = 0;
-let totalTime = 0;
-let totalDistance = 0;
-
-totalAscent = calculateAscent();
-calculateTime();
-calculateDistance();
+const points = [{ elevation: 1 }, { elevation: 4 }, { elevation: 9 }];
+const totalAscent = calculateAscent();
+const totalTime = calculateTime();
+const totalDistance = calculateDistance();
 
 const pace = totalTime / 60 / totalDistance;
 
