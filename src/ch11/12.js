@@ -26,19 +26,19 @@ const localShippingRules = (country) => {
   if (data) return new ShippingRules(data);
   else throw new OrderProcessingError(-23);
 };
+
 const calculateShippingCosts = (order) => {
   // 관련 없는 코드
   const shippingRules = localShippingRules(order.country);
-  if (shippingRules < 0) throw new Error("오류 코드가 다 사라지지 않았습니다.");
   // 관련 없는 코드
 };
+
 const execute = (order) => {
-  let state;
   try {
-    state = calculateShippingCosts(order);
+    calculateShippingCosts(order);
   } catch (err) {
     if (err instanceof OrderProcessingError) {
-      if (state < 0) errorList.push({ order, errorCode: state });
+      errorList.push({ order, errorCode: err.code });
     } else {
       throw err;
     }
