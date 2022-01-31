@@ -1,11 +1,11 @@
 class ChargeCalculator {
   charge(customer, usage, provider) {
-    return customer.baseRate * usage + provider.connectionCharge;
+    return;
   }
 }
 
 const charge = (customer, usage, provider) =>
-  new ChargeCalculator().charge(customer, usage, provider);
+  customer.baseRate * usage + provider.connectionCharge;
 
 const customer = { baseRate: 100 };
 const usage = 1000;
