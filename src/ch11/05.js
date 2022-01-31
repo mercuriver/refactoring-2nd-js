@@ -10,10 +10,7 @@ class Order {
   }
 
   get discountLevel() {
-    let discountLevel;
-    if (this.quantity > 100) discountLevel = 2;
-    else discountLevel = 1;
-    return discountLevel;
+    return this.quantity > 100 ? 2 : 1;
   }
 
   discountedPrice(basePrice, discountLevel) {
