@@ -9,8 +9,7 @@ class HeatingPlan {
     this._max = 30;
   }
   get targetTemperature() {
-    const selectedTemperature = thermostat.selectedTemperature;
-    return this.xxNewTargetTemperature(selectedTemperature);
+    return this.xxNewTargetTemperature(thermostat.selectedTemperature);
   }
 
   xxNewTargetTemperature(selectedTemperature) {
