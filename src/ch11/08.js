@@ -18,11 +18,19 @@ class Employee {
   }
 }
 
+const createEmployee = (name, typeCode) => new Employee(name, typeCode);
+
 const client1 = () => {
-  const document = { name: "재남", empType: "M", leadEngineer: "로이" };
-  const candidate = new Employee(document.name, document.empType);
-  const leadEngineer = new Employee(document.leadEngineer, "E");
-  return { candidate: candidate.name, leadEngineer: leadEngineer.name };
+  const document = {
+    name: "name AA",
+    empType: "M",
+    leadEngineer: "leadEngineer BB",
+  };
+
+  const candidate = createEmployee(document.name, document.empType);
+  const leadEngineer = createEmployee(document.leadEngineer, "E");
+
+  return { candidate: candidate, leadEngineer: leadEngineer };
 };
 
 console.log(client1());
