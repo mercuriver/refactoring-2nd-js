@@ -23,7 +23,12 @@ const calculateShippingCosts = (order) => {
   // 관련 없는 코드
 };
 const execute = (order) => {
-  const state = calculateShippingCosts(order);
+  let state;
+  try {
+    state = calculateShippingCosts(order);
+  } catch (err) {
+    throw err;
+  }
   if (state < 0) errorList.push({ order, errorCode: state });
 };
 
