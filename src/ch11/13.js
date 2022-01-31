@@ -18,17 +18,9 @@ class ResourcePool {
   get isEmpty() {
     return this.available.length === 0;
   }
-
   get() {
-    let result;
-    if (this.isEmpty) {
-      result = Resource.create();
-      this.allocated.add(result);
-    } else {
-      result = this.available.pop();
-      this.allocated.add(result);
-    }
-    return result;
+    const result = this.isEmpty ? Resource.create() : this.available.pop();
+    this.allocated.add(result);
   }
   add() {
     this.available.push(Resource.create());
