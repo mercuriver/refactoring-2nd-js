@@ -18,6 +18,7 @@ class Employee {
   }
 }
 
+const createEngineer = (name) => new Employee(name, "E");
 const createEmployee = (name, typeCode) => new Employee(name, typeCode);
 
 const client1 = () => {
@@ -28,7 +29,7 @@ const client1 = () => {
   };
 
   const candidate = createEmployee(document.name, document.empType);
-  const leadEngineer = createEmployee(document.leadEngineer, "E");
+  const leadEngineer = createEngineer(document.leadEngineer);
 
   return { candidate: candidate, leadEngineer: leadEngineer };
 };
