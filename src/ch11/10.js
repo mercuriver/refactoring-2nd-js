@@ -12,8 +12,12 @@ class ChargeCalculator {
   }
 }
 
+const charge = (customer, usage, provider) =>
+  new ChargeCalculator(customer, usage, provider).charge;
+
 const customer = { baseRate: 100 };
 const usage = 1000;
 const provider = { connectionCharge: 50 };
-const monthCharge = new ChargeCalculator(customer, usage, provider).charge;
+const monthCharge = charge(customer, usage, provider);
+
 console.log(monthCharge);
