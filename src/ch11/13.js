@@ -14,16 +14,25 @@ const Resource = (() => {
 class ResourcePool {
   available = [];
   allocated = new Set();
+
+  get isEmpty() {
+    return this.available.length === 0;
+  }
+
   get() {
     let result;
-    try {
-      result = this.available.pop();
-      if (!result) throw Error("no available resource");
-      this.allocated.add(result);
-    } catch (e) {
+
+    if (this.isEmpty) {
       result = Resource.create();
       this.allocated.add(result);
+    } else {
+      try {
+        result = this.available.pop();
+        if (!result) throw Error("no available resource");
+        this.allocated.add(result);
+      } catch (e) {}
     }
+
     return result;
   }
   add() {
@@ -34,13 +43,15 @@ class ResourcePool {
 const pool = new ResourcePool();
 pool.get();
 console.log({ available: pool.available, allocated: pool.allocated });
-pool.add();
-pool.add();
-pool.add();
-console.log({ available: pool.available, allocated: pool.allocated });
-pool.get();
-pool.get();
 pool.get();
 console.log({ available: pool.available, allocated: pool.allocated });
-pool.get();
-console.log({ available: pool.available, allocated: pool.allocated });
+// pool.add();
+// pool.add();
+// pool.add();
+// console.log({ available: pool.available, allocated: pool.allocated });
+// pool.get();
+// pool.get();
+// pool.get();
+// console.log({ available: pool.available, allocated: pool.allocated });
+// pool.get();
+// console.log({ available: pool.available, allocated: pool.allocated });
