@@ -1,9 +1,3 @@
-class ChargeCalculator {
-  charge(customer, usage, provider) {
-    return;
-  }
-}
-
 const charge = (customer, usage, provider) =>
   customer.baseRate * usage + provider.connectionCharge;
 
