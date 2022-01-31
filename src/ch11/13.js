@@ -21,18 +21,13 @@ class ResourcePool {
 
   get() {
     let result;
-
     if (this.isEmpty) {
       result = Resource.create();
       this.allocated.add(result);
     } else {
-      try {
-        result = this.available.pop();
-        if (!result) throw Error("no available resource");
-        this.allocated.add(result);
-      } catch (e) {}
+      result = this.available.pop();
+      this.allocated.add(result);
     }
-
     return result;
   }
   add() {
