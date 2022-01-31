@@ -4,17 +4,29 @@ const thermostat = {
 };
 
 class HeatingPlan {
+  constructor() {
+    this._min = 21;
+    this._max = 30;
+  }
   get targetTemperature() {
-    if (thermostat.selectedTemperature > this._max) return this._max;
-    else if (thermostat.selectedTemperature < this._min) return this._min;
-    else return thermostat.selectedTemperature;
+    const selectedTemperature = thermostat.selectedTemperature;
+
+    if (selectedTemperature > this._max) return this._max;
+    else if (selectedTemperature < this._min) return this._min;
+    else return selectedTemperature;
   }
 }
 
 const temperatureController = () => {
-  const setToHeat = () => {};
-  const setToCool = () => {};
-  const setOff = () => {};
+  const setToHeat = () => {
+    console.log("setToHeat");
+  };
+  const setToCool = () => {
+    console.log("setToCool");
+  };
+  const setOff = () => {
+    console.log("setOff");
+  };
 
   const heatingPlan = new HeatingPlan();
   if (heatingPlan.targetTemperature > thermostat.currentTemperature)
@@ -23,3 +35,5 @@ const temperatureController = () => {
     setToCool();
   else setOff();
 };
+
+temperatureController();
