@@ -1,4 +1,8 @@
 class Person {
+  constructor(id, name) {
+    this._id = id;
+    this._name = name;
+  }
   get name() {
     return this._name;
   }
@@ -8,10 +12,8 @@ class Person {
   get id() {
     return this._id;
   }
-  set id(id) {
-    this._id = id;
-  }
 }
-const martin = new Person();
-martin.name = "Martin";
-martin.id = "1234";
+const martin = new Person("1234", "Martin");
+martin.name = "New Martin";
+
+console.log(martin);
