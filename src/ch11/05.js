@@ -5,8 +5,7 @@ class Order {
   }
   get finalPrice() {
     const basePrice = this.quantity * this.itemPrice;
-    let discountLevel = this.discountLevel;
-    return this.discountedPrice(basePrice, discountLevel);
+    return this.discountedPrice(basePrice, this.discountLevel);
   }
 
   get discountLevel() {
