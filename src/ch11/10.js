@@ -4,11 +4,10 @@ class ChargeCalculator {
     this._usage = usage;
     this._provider = provider;
   }
-  get baseCharge() {
-    return this._customer.baseRate * this._usage;
-  }
   get charge() {
-    return this.baseCharge + this._provider.connectionCharge;
+    return (
+      this._customer.baseRate * this._usage + this._provider.connectionCharge
+    );
   }
 }
 
