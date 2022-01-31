@@ -4,16 +4,19 @@ class Score {
     this._medicalExam = medicalExam;
     this._scoringGuide = scoringGuide;
   }
-
+  scoreSmoking() {
+    if (this._medicalExam.isSmoker) {
+      this._healthLevel += 10;
+      this._highMedicalRiskFlag = true;
+    }
+  }
   execute() {
     this._result = 0;
     this._healthLevel = 0;
     this._highMedicalRiskFlag = false;
 
-    if (this._medicalExam.isSmoker) {
-      this._healthLevel += 10;
-      this._highMedicalRiskFlag = true;
-    }
+    this.scoreSmoking();
+
     let certificationGrade = "regular";
     if (
       this._scoringGuide.stateWithLowCertification(this._candidate.originState)
