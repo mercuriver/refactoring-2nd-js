@@ -31,9 +31,15 @@ const temperatureController = () => {
   };
 
   const heatingPlan = new HeatingPlan();
-  if (heatingPlan.targetTemperature > thermostat.currentTemperature)
+  if (
+    heatingPlan.xxNewTargetTemperature(thermostat.selectedTemperature) >
+    thermostat.currentTemperature
+  )
     setToHeat();
-  else if (heatingPlan.targetTemperature < thermostat.currentTemperature)
+  else if (
+    heatingPlan.xxNewTargetTemperature(thermostat.selectedTemperature) <
+    thermostat.currentTemperature
+  )
     setToCool();
   else setOff();
 };
