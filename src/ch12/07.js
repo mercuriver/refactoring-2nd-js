@@ -23,11 +23,38 @@ class Female extends Person {
 const createPerson = (name) => new Person(name);
 const createMale = (name) => new Male(name);
 const createFemale = (name) => new Female(name);
-const people = [
-  new Male("A-M"),
-  new Female("B-F"),
-  new Male("C-M"),
-  new Female("D-F"),
+
+const loadFromInput = (data) => {
+  const result = [];
+  data.forEach((aRecord) => {
+    let p;
+    switch (aRecord.gender) {
+      case "M":
+        p = new Male(aRecord.name);
+        break;
+      case "F":
+        p = new Female(aRecord.name);
+        break;
+      default:
+        p = new Person(aRecord.name);
+        break;
+    }
+    result.push(p);
+  });
+  return result;
+};
+
+const peopleMeta = [
+  { name: "A-M", gender: "M" },
+  { name: "B-M", gender: "M" },
+  { name: "C-M", gender: "M" },
+  { name: "D-F", gender: "F" },
+  { name: "E-F", gender: "F" },
+  { name: "F-P", gender: "P" },
+  { name: "G-P", gender: "O" },
 ];
+const people = loadFromInput(peopleMeta);
+
 const numberOfMales = people.filter((p) => p instanceof Male).length;
+
 console.log(numberOfMales);
