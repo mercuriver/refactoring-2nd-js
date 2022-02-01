@@ -74,18 +74,8 @@ class NorwegianBlueParrot extends Bird {
   }
 }
 
-const createBird = (data) => {
-  switch (data.type) {
-    case "european":
-      return new Bird(data);
-    case "african":
-      return new Bird(data);
-    case "norwegian":
-      return new Bird(data);
-    default:
-      return new Bird(data);
-  }
-};
+const createBird = (data) => new Bird(data);
+
 const birds = [
   createBird({ type: "european", name: "유-제" }),
   createBird({ type: "african", name: "아-제-2", numberOfCoconuts: 2 }),
