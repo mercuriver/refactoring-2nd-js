@@ -25,15 +25,13 @@ class Bird {
     return this._feather || "보통이다";
   }
   get airSpeedVelocity() {
-    return null;
+    return this._speciesDelegate
+      ? this._speciesDelegate.airSpeedVelocity
+      : null;
   }
 }
 
-class EuropeanSwallow extends Bird {
-  get airSpeedVelocity() {
-    return this._speciesDelegate.airSpeedVelocity;
-  }
-}
+class EuropeanSwallow extends Bird {}
 
 class AfricanSwallow extends Bird {
   constructor(data) {
