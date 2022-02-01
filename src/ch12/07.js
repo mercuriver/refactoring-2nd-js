@@ -20,6 +20,9 @@ class Female extends Person {
   }
 }
 
+const createPerson = (name) => new Person(name);
+const createMale = (name) => new Male(name);
+const createFemale = (name) => new Female(name);
 const people = [
   new Male("A-M"),
   new Female("B-F"),
