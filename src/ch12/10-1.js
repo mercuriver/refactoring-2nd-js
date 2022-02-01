@@ -21,6 +21,9 @@ class Booking {
       ? this._premiumDelegate.basePrice
       : this._privateBasePrice;
   }
+  get hasDinner() {
+    return this._premiumDelegate ? this._premiumDelegate.hasDinner : undefined;
+  }
   get isPeakDay() {
     return (
       this.date.isAfter(dayjs("2021-07-15")) &&
@@ -47,7 +50,7 @@ class PremiumBooking extends Booking {
     return this._premiumDelegate.basePrice;
   }
   get hasDinner() {
-    return this._extras.hasOwnProperty("dinner") && !this.isPeakDay;
+    return this._premiumDelegate.hasDinner;
   }
 }
 
@@ -61,6 +64,9 @@ class PremiumBookingDelegate {
   }
   get hasTalkback() {
     return this._host.show.hasOwnProperty("talkback");
+  }
+  get hasDinner() {
+    return this._extras.hasOwnProperty("dinner") && !this.isPeakDay;
   }
 }
 
