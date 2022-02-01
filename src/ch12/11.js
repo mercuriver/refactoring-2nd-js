@@ -18,7 +18,7 @@ class CatalogItem {
 }
 
 class Scroll {
-  constructor(id, title, tags, dataLastCleaned, catalogID, catalog) {
+  constructor(id, catalogID, catalog, dataLastCleaned) {
     this._id = id;
     // this._catalogItem = new CatalogItem(id, title, tags);
     console.log(catalog);
@@ -55,31 +55,24 @@ const catalog = new Map([
 const data = [
   {
     id: "A001",
-    catalogData: catalog.get("icespear"),
+    catalogId: "icespear",
     lastCleaned: "2018-11-01",
   },
   {
     id: "B002",
-    catalogData: catalog.get("fireball"),
+    catalogId: "fireball",
     lastCleaned: "2018-09-01",
   },
   {
     id: "C003",
-    catalogData: catalog.get("meteor"),
+    catalogId: "meteor",
     lastCleaned: "2020-02-01",
   },
 ];
 
 const scrolls = data.map(
   (record) =>
-    new Scroll(
-      record.id,
-      record.catalogData.title,
-      record.catalogData.tags,
-      dayjs(record.lastCleaned),
-      record.catalogData.id,
-      catalog
-    )
+    new Scroll(record.id, record.catalogId, catalog, dayjs(record.lastCleaned))
 );
 
 scrolls.forEach((scroll) => {
