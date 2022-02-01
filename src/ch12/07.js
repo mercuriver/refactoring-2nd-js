@@ -36,6 +36,7 @@ const createPerson = (aRecord) => {
 };
 
 const loadFromInput = (data) => data.map((aRecord) => createPerson(aRecord));
+const isMale = (aPerson) => aPerson instanceof Male;
 
 const peopleMeta = [
   { name: "A-M", gender: "M" },
@@ -48,6 +49,6 @@ const peopleMeta = [
 ];
 const people = loadFromInput(peopleMeta);
 
-const numberOfMales = people.filter((p) => p instanceof Male).length;
+const numberOfMales = people.filter((p) => isMale(p)).length;
 
 console.log(numberOfMales);
