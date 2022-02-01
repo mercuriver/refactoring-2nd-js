@@ -15,6 +15,13 @@ class Employee {
     return `${this._name} is a ${this.type}`;
   }
 }
+
+class Engineer extends Employee {
+  get type() {
+    return "engineer";
+  }
+}
+
 const a = new Employee("a", "engineer");
 const b = new Employee("b", "manager");
 const c = new Employee("c", "salesperson");
