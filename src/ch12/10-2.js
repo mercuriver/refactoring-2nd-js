@@ -13,13 +13,14 @@ class AfricanSwallowDelegate {
 }
 
 class NorwegianBlueParrotDelegate {
-  constructor(data) {
+  constructor(data, bird) {
+    this._bird = bird;
     this._voltage = data.voltage;
     this._isNailed = data.isNailed;
   }
   get feather() {
     if (this._voltage > 100) return "그을렸다";
-    return this._feather || "예쁘다";
+    return this._bird._feather || "예쁘다";
   }
   get airSpeedVelocity() {
     return this._isNailed ? 0 : 10 + this._voltage / 10;
@@ -39,7 +40,7 @@ class Bird {
       case "african":
         return new AfricanSwallowDelegate(data);
       case "norwegian":
-        return new NorwegianBlueParrotDelegate(data);
+        return new NorwegianBlueParrotDelegate(data, this);
       default:
         return null;
     }
