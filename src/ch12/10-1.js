@@ -59,7 +59,7 @@ class PremiumBookingDelegate {
 
 const createBooking = (show, date) => new Booking(show, date);
 const createPremiumBooking = (show, date, extras) => {
-  const result = new Booking(show, date, extras);
+  const result = new Booking(show, date);
   result._bePremium(extras);
   return result;
 };
