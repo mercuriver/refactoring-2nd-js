@@ -20,6 +20,7 @@ class CatalogItem {
 class Scroll extends CatalogItem {
   constructor(id, title, tags, dataLastCleaned) {
     super(id, title, tags);
+    this._catalogItem = new CatalogItem(id, title, tags);
     this._lastCleaned = dataLastCleaned;
   }
   needsCleaning(targetDate) {
@@ -28,6 +29,15 @@ class Scroll extends CatalogItem {
   }
   daysSinceLastCleaning(targetDate) {
     return targetDate.diff(this._lastCleaned, "d");
+  }
+  get id() {
+    return this._catalogItem.id;
+  }
+  get title() {
+    return this._catalogItem.title;
+  }
+  hasTag(arg) {
+    return this._catalogItem.hasTag(arg);
   }
 }
 
@@ -60,6 +70,7 @@ const data = [
     lastCleaned: "2020-02-01",
   },
 ];
+
 const scrolls = data.map(
   (record) =>
     new Scroll(
@@ -69,6 +80,7 @@ const scrolls = data.map(
       dayjs(record.lastCleaned)
     )
 );
+
 scrolls.forEach((scroll) => {
   console.log({
     title: scroll.title,
