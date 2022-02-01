@@ -18,8 +18,11 @@ class CatalogItem {
 }
 
 class Scroll {
-  constructor(id, title, tags, dataLastCleaned) {
-    this._catalogItem = new CatalogItem(id, title, tags);
+  constructor(id, title, tags, dataLastCleaned, catalogID, catalog) {
+    this._id = id;
+    // this._catalogItem = new CatalogItem(id, title, tags);
+    console.log(catalog);
+    this._catalogItem = catalog.get(catalogID);
     this._lastCleaned = dataLastCleaned;
   }
   needsCleaning(targetDate) {
@@ -30,7 +33,7 @@ class Scroll {
     return targetDate.diff(this._lastCleaned, "d");
   }
   get id() {
-    return this._catalogItem.id;
+    return this._id;
   }
   get title() {
     return this._catalogItem.title;
@@ -40,32 +43,29 @@ class Scroll {
   }
 }
 
+const catalog = new Map([
+  [
+    "icespear",
+    new CatalogItem("icespear", "아이스스피어", ["magic", "revered"]),
+  ],
+  ["fireball", new CatalogItem("fireball", "파이어볼", ["magic"])],
+  ["meteor", new CatalogItem("meteor", "메테오", ["magic", "revered"])],
+]);
+
 const data = [
   {
     id: "A001",
-    catalogData: {
-      id: "icespear",
-      title: "아이스스피어",
-      tags: ["magic", "revered"],
-    },
+    catalogData: catalog.get("icespear"),
     lastCleaned: "2018-11-01",
   },
   {
     id: "B002",
-    catalogData: {
-      id: "fieball",
-      title: "파이어볼",
-      tags: ["magic"],
-    },
+    catalogData: catalog.get("fireball"),
     lastCleaned: "2018-09-01",
   },
   {
     id: "C003",
-    catalogData: {
-      id: "meteor",
-      title: "메테오",
-      tags: ["magic", "revered"],
-    },
+    catalogData: catalog.get("meteor"),
     lastCleaned: "2020-02-01",
   },
 ];
@@ -76,12 +76,15 @@ const scrolls = data.map(
       record.id,
       record.catalogData.title,
       record.catalogData.tags,
-      dayjs(record.lastCleaned)
+      dayjs(record.lastCleaned),
+      record.catalogData.id,
+      catalog
     )
 );
 
 scrolls.forEach((scroll) => {
   console.log({
+    id: scroll.id,
     title: scroll.title,
     needsCleaning: scroll.needsCleaning(dayjs()),
     daysSinceLastCleaning: scroll.daysSinceLastCleaning(dayjs()),
