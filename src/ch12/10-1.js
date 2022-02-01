@@ -41,19 +41,6 @@ class Booking {
   }
 }
 
-class PremiumBooking extends Booking {
-  constructor(show, date, extras) {
-    super(show, date);
-    this._extras = extras;
-  }
-  get basePrice() {
-    return this._premiumDelegate.basePrice;
-  }
-  get hasDinner() {
-    return this._premiumDelegate.hasDinner;
-  }
-}
-
 class PremiumBookingDelegate {
   constructor(hostBooking, extras) {
     this._host = hostBooking;
