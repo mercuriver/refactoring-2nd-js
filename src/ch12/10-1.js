@@ -43,11 +43,15 @@ class PremiumBooking extends Booking {
   }
 }
 
-const booking = new Booking(
+const createBooking = (show, date) => new Booking(show, date);
+const createPremiumBooking = (show, date, extras) =>
+  new PremiumBooking(show, date, extras);
+
+const booking = createBooking(
   { price: 100, talkback: true },
   dayjs("2021-07-11")
 );
-const premiumBooking1 = new PremiumBooking(
+const premiumBooking1 = createPremiumBooking(
   { price: 100, talkback: true },
   dayjs("2021-07-13"),
   {
@@ -55,7 +59,7 @@ const premiumBooking1 = new PremiumBooking(
     premiumFee: 10,
   }
 );
-const premiumBooking2 = new PremiumBooking(
+const premiumBooking2 = createPremiumBooking(
   { price: 100 },
   dayjs("2021-07-17"),
   {
