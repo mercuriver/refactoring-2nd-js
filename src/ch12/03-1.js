@@ -1,9 +1,12 @@
-class Party {}
+class Party {
+  constructor(name) {
+    this._name = name;
+  }
+}
 
 export class Employee extends Party {
   constructor(name, id, monthlyCost) {
-    super();
-    this._name = name;
+    super(name);
     this._id = id;
     this._monthlyCost = monthlyCost;
   }
@@ -17,8 +20,7 @@ export class Employee extends Party {
 
 export class Department extends Party {
   constructor(name, staff) {
-    super();
-    this._name = name;
+    super(name);
     this._staff = staff;
   }
   get name() {
@@ -28,3 +30,11 @@ export class Department extends Party {
     return this._staff;
   }
 }
+
+const a = new Employee("AA", "A001", 3000);
+const b = new Employee("BB", "B002", 2500);
+const dep = new Department("영업", [a, b]);
+
+console.log(a._name, a);
+console.log(b._name, b);
+console.log(dep._name, dep);
