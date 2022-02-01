@@ -8,11 +8,19 @@ class Employee {
     if (!["engineer", "manager", "salesperson"].includes(arg))
       throw new Error(`${arg}라는 직원 유형은 없습니다.`);
   }
+  get type() {
+    return this._type;
+  }
   toString() {
-    return `${this._name} is a ${this._type}`;
+    return `${this._name} is a ${this.type}`;
   }
 }
 const a = new Employee("a", "engineer");
 const b = new Employee("b", "manager");
 const c = new Employee("c", "salesperson");
-const d = new Employee("d", "nobody");
+// const d = new Employee("d", "nobody");
+
+console.log(a);
+console.log(b);
+console.log(c);
+// console.log(d);
