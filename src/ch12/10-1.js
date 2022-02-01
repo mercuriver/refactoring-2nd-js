@@ -25,6 +25,10 @@ class Booking {
       this.date.isBefore(dayjs("2021-07-31"))
     );
   }
+
+  _bePremium(extras) {
+    this._premiumDelegate = new PremiumBookingDelegate(this, extras);
+  }
 }
 
 class PremiumBooking extends Booking {
@@ -49,9 +53,13 @@ class PremiumBookingDelegate {
     this._extras = extras;
   }
 }
+
 const createBooking = (show, date) => new Booking(show, date);
-const createPremiumBooking = (show, date, extras) =>
-  new PremiumBooking(show, date, extras);
+const createPremiumBooking = (show, date, extras) => {
+  const result = new PremiumBooking(show, date, extras);
+  result._bePremium(extras);
+  return result;
+};
 
 const booking = createBooking(
   { price: 100, talkback: true },
