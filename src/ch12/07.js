@@ -13,8 +13,6 @@ class Person {
     return this._genderCode === "M";
   }
 }
-class Male extends Person {}
-class Female extends Person {}
 
 const createPerson = (aRecord) => {
   switch (aRecord.gender) {
