@@ -8,10 +8,10 @@ class Employee extends Party {
 }
 class Department extends Party {
   monthlyCost = 2;
-  get totalAnnualCost() {
+  get annualCost() {
     return this.monthlyCost * 12;
   }
 }
 
 console.log(new Employee().annualCost);
-console.log(new Department().totalAnnualCost);
+console.log(new Department().annualCost);
