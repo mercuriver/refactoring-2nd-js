@@ -8,6 +8,9 @@ class Person {
   get genderCode() {
     return "X";
   }
+  get isMale() {
+    return this instanceof Male;
+  }
 }
 class Male extends Person {
   get genderCode() {
@@ -19,10 +22,6 @@ class Female extends Person {
     return "F";
   }
 }
-
-// const createPerson = (name) => new Person(name);
-const createMale = (name) => new Male(name);
-const createFemale = (name) => new Female(name);
 
 const createPerson = (aRecord) => {
   switch (aRecord.gender) {
@@ -36,7 +35,6 @@ const createPerson = (aRecord) => {
 };
 
 const loadFromInput = (data) => data.map((aRecord) => createPerson(aRecord));
-const isMale = (aPerson) => aPerson instanceof Male;
 
 const peopleMeta = [
   { name: "A-M", gender: "M" },
@@ -49,6 +47,6 @@ const peopleMeta = [
 ];
 const people = loadFromInput(peopleMeta);
 
-const numberOfMales = people.filter((p) => isMale(p)).length;
+const numberOfMales = people.filter((p) => p.isMale).length;
 
 console.log(numberOfMales);
