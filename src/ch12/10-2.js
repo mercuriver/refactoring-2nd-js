@@ -31,8 +31,6 @@ class Bird {
   }
 }
 
-class EuropeanSwallow extends Bird {}
-
 class AfricanSwallow extends Bird {
   constructor(data) {
     super(data);
@@ -60,7 +58,7 @@ class NorwegianBlueParrot extends Bird {
 const createBird = (data) => {
   switch (data.type) {
     case "european":
-      return new EuropeanSwallow(data);
+      return new Bird(data);
     case "african":
       return new AfricanSwallow(data);
     case "norwegian":
