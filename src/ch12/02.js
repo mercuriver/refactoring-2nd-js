@@ -1,10 +1,14 @@
-class Employee {}
-class SalesPerson extends Employee {
-  #name = "SalesPerson name";
+class Employee {
+  // protected #name;
+  // #name;
+  _name;
+  constructor(name) {
+    // this.#name = name;
+    this._name = name;
+  }
 }
-class Engineer extends Employee {
-  #name = "Engineer name";
-}
+class SalesPerson extends Employee {}
+class Engineer extends Employee {}
 
-console.log(new SalesPerson().#name);
-console.log(new Engineer().#name);
+console.log(new SalesPerson("AA")._name);
+console.log(new Engineer("BB")._name);
