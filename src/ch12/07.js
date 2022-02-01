@@ -35,13 +35,7 @@ const createPerson = (aRecord) => {
   }
 };
 
-const loadFromInput = (data) => {
-  const result = [];
-  data.forEach((aRecord) => {
-    result.push(createPerson(aRecord));
-  });
-  return result;
-};
+const loadFromInput = (data) => data.map((aRecord) => createPerson(aRecord));
 
 const peopleMeta = [
   { name: "A-M", gender: "M" },
