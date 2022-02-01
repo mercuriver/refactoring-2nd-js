@@ -22,10 +22,26 @@ class Engineer extends Employee {
   }
 }
 
+class Manager extends Employee {
+  get type() {
+    return "manager";
+  }
+}
+class Salesperson extends Employee {
+  get type() {
+    return "salesperson";
+  }
+}
+
 const createEmployee = (name, type) => {
   switch (type) {
     case "engineer":
       return new Engineer(name, type);
+    case "manager":
+      return new Manager(name, type);
+    case "salesperson":
+      return new Salesperson(name, type);
+
     default:
       return new Employee(name, type);
   }
