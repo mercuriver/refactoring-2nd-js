@@ -49,7 +49,9 @@ class Bird {
     return this._name;
   }
   get feather() {
-    return this._feather || "보통이다";
+    return this._speciesDelegate instanceof NorwegianBlueParrotDelegate
+      ? this._speciesDelegate.feather
+      : this._feather || "보통이다";
   }
   get airSpeedVelocity() {
     return this._speciesDelegate
@@ -79,7 +81,7 @@ const createBird = (data) => {
     case "african":
       return new Bird(data);
     case "norwegian":
-      return new NorwegianBlueParrot(data);
+      return new Bird(data);
     default:
       return new Bird(data);
   }
