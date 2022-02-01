@@ -60,20 +60,6 @@ class Bird {
   }
 }
 
-class NorwegianBlueParrot extends Bird {
-  constructor(data) {
-    super(data);
-    this._voltage = data.voltage;
-    this._isNailed = data.isNailed;
-  }
-  get feather() {
-    return this._speciesDelegate.feather;
-  }
-  get airSpeedVelocity() {
-    return this._speciesDelegate.airSpeedVelocity;
-  }
-}
-
 const createBird = (data) => new Bird(data);
 
 const birds = [
