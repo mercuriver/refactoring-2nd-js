@@ -22,10 +22,19 @@ class Engineer extends Employee {
   }
 }
 
-const a = new Employee("a", "engineer");
-const b = new Employee("b", "manager");
-const c = new Employee("c", "salesperson");
-// const d = new Employee("d", "nobody");
+const createEmployee = (name, type) => {
+  switch (type) {
+    case "engineer":
+      return new Engineer(name, type);
+    default:
+      return new Employee(name, type);
+  }
+};
+
+const a = createEmployee("a", "engineer");
+const b = createEmployee("b", "manager");
+const c = createEmployee("c", "salesperson");
+// const d = createEmployee("d", "nobody");
 
 console.log(a);
 console.log(b);
